@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fixup — Professional Home Services</title>
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<!-- Font Awesome for icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1e40af;
+      --secondary: #f59e0b;
+      --accent: #06b6d4;
+      --dark: #1f2937;
+      --light: #f8fafc;
+      --text-dark: #111827;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --success: #10b981;
+      --warning: #f59e0b;
+    }
+
+    * { 
+      box-sizing: border-box; 
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Trebuchet MS, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-dark);
+      background: #ffffff;
+      line-height: 1.6;
+    }
+
+    button, input { 
+      font: inherit; 
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    h1 { font-size: 3.5rem; }
+    h2 { font-size: 2.5rem; }
+    h3 { font-size: 1.8rem; }
+    h4 { font-size: 1.4rem; }
+    h5 { font-size: 1.2rem; }
+
+    p, label, span {
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+
+    .app-container {
+      width: min(1200px, calc(100% - 32px));
+      margin: auto;
+    }
+
+    /* ===== HEADER & NAV ===== */
+    .navbar-custom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      background: white;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .navbar-custom.scrolled {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-dark);
+      text-decoration: none;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      font-weight: 900;
+      font-size: 24px;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links button,
+    .text-link {
+      border: 0;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links button:hover,
+    .text-link:hover {
+      color: var(--primary);
+    }
+
+    .btn-fixup {
+      border: 0;
+      border-radius: 10px;
+      padding: 14px 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 750;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-fixup:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .btn-primary-fixup {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    }
+
+    .btn-primary-fixup:hover {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, #0891b2 100%);
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-light-fixup {
+      background: white;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      font-weight: 700;
+    }
+
+    .btn-light-fixup:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .hamburger {
+      display: none;
+      border: 2px solid var(--border);
+      background: white;
+      color: var(--text-dark);
+      border-radius: 10px;
+      padding: 10px 13px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .mobile-menu {
+      display: none;
+      padding: 15px 0 20px;
+      border-top: 2px solid var(--border);
+    }
+
+    .mobile-menu.open { 
+      display: block; 
+    }
+
+    .mobile-menu button {
+      display: block;
+      width: 100%;
+      border: 0;
+      background: white;
+      color: var(--text-muted);
+      text-align: left;
+      padding: 12px 0;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .mobile-menu button:hover {
+      color: var(--primary);
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero-section {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #f0f9ff 0%, #f0f4ff 100%);
+      margin-top: 10px;
+    }
+
+    .hero-content h1 {
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .hero-content > p {
+      font-size: 1.3rem;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+      font-weight: 500;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .cta-buttons .btn-fixup {
+      font-size: 16px;
+      padding: 16px 32px;
+    }
+
+    /* ===== FEATURE SECTIONS ===== */
+    .feature-section {
+      padding: 80px 0;
+    }
+
+    .feature-section.bg-light {
+      background: #f8fafc;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .feature-section .container {
+      width: min(1200px, calc(100% - 32px));
+      margin: auto;
+    }
+
+    .section-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      margin: 16px 0 12px 0;
+      color: var(--text-dark);
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ===== SERVICE CARDS ===== */
+    .service-card {
+      background: white;
+      border-radius: 16px;
+      padding: 32px 24px;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .service-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 12px 40px rgba(37, 99, 235, 0.15);
+      transform: translateY(-8px);
+    }
+
+    .service-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(6, 182, 212, 0.1));
+      border-radius: 12px;
+    }
+
+    .service-card h4 {
+      margin: 16px 0 12px 0;
+      color: var(--text-dark);
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    /* ===== PROVIDER CARDS ===== */
+    .provider-card {
+      background: white;
+      border-radius: 14px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .provider-card:hover {
+      box-shadow: 0 12px 36px rgba(0,0,0,0.12);
+      border-color: var(--accent);
+    }
+
+    .provider-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    .provider-card h5 {
+      font-size: 1.2rem;
+      margin: 8px 0 4px 0;
+      color: var(--text-dark);
+    }
+
+    .provider-card small {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .provider-card p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin: 12px 0;
+      line-height: 1.6;
+    }
+
+    .badge {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge.text-bg-success {
+      background: #d1fae5 !important;
+      color: #065f46 !important;
+    }
+
+    /* ===== FORM SECTIONS ===== */
+    .form-section {
+      background: white;
+      border-radius: 16px;
+      padding: 40px 32px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .form-label {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .form-control, .form-select {
+      font-size: 1rem;
+      padding: 14px 16px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      outline: none;
+    }
+
+    .form-control::placeholder {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .form-check-input {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      border: 2px solid var(--border);
+    }
+
+    .form-check-input:checked {
+      background-color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .form-check-label {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      cursor: pointer;
+      margin-left: 8px;
+    }
+
+    /* ===== REMINDER ITEMS ===== */
+    .reminder-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .reminder-item:last-child {
+      border-bottom: none;
+    }
+
+    .reminder-item strong {
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    .reminder-item .text-muted {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    /* ===== FEATURE CARD ===== */
+    .feature-card {
+      background: white;
+      border-radius: 16px;
+      padding: 40px 32px;
+      border: 1px solid var(--border);
+    }
+
+    /* ===== MODAL ===== */
+    .modal-backdrop-fixup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      backdrop-filter: blur(2px);
+    }
+
+    .modal-backdrop-fixup.hidden {
+      display: none;
+    }
+
+    .modal-fixup {
+      background: white;
+      border-radius: 16px;
+      padding: 32px;
+      width: min(500px, 90vw);
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    .modal-close {
+      border: 0;
+      background: transparent;
+      font-size: 28px;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-close:hover {
+      color: var(--text-dark);
+    }
+
+    .auth-switch {
+      display: flex;
+      gap: 12px;
+      margin: 24px 0 32px 0;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .auth-switch button {
+      border: 0;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 12px 0;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .auth-switch button.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    .field.hidden {
+      display: none;
+    }
+
+    .form-label-fixup {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .form-control-fixup {
+      font-size: 1rem;
+      padding: 12px 14px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      width: 100%;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .form-control-fixup:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      outline: none;
+    }
+
+    /* ===== MESSAGES ===== */
+    .message {
+      padding: 16px;
+      background: #d1fae5;
+      color: #065f46;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .message.hidden {
+      display: none;
+    }
+
+    /* ===== TOAST ===== */
+    .toast-fixup {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--text-dark);
+      color: white;
+      padding: 16px 24px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      z-index: 1001;
+      animation: slideUp 0.3s ease;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+
+    .toast-fixup.hidden {
+      display: none;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(100px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: linear-gradient(135deg, var(--dark) 0%, #1a202c 100%);
+      color: white;
+      padding: 60px 0 30px 0;
+      margin-top: 100px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    footer .container {
+      width: min(1200px, calc(100% - 32px));
+      margin: auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-section h4 {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      color: white;
+      font-weight: 800;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-section ul li a {
+      color: #d1d5db;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section ul li a:hover {
+      color: white;
+    }
+
+    .footer-section p {
+      color: #d1d5db;
+      font-size: 0.95rem;
+      font-weight: 500;
+      line-height: 1.7;
+    }
+
+    .footer-divider {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 30px;
+      margin-top: 30px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-bottom p {
+      color: #9ca3af;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+    }
+
+    .social-links a:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      h1 { font-size: 2.5rem; }
+      h2 { font-size: 1.8rem; }
+      h3 { font-size: 1.4rem; }
+      h4 { font-size: 1.1rem; }
+
+      p, label, span {
+        font-size: 1rem;
+      }
+
+      .nav-links {
+        gap: 16px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links:not(.mobile-menu) {
+        display: none;
+      }
+
+      .hero-section {
+        padding: 50px 0;
+      }
+
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+
+      .hero-content > p {
+        font-size: 1.1rem;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+      }
+
+      .cta-buttons .btn-fixup {
+        width: 100%;
+      }
+
+      .feature-section {
+        padding: 50px 0;
+      }
+
+      .form-section {
+        padding: 24px;
+      }
+
+      .service-icon {
+        font-size: 36px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  
+    /* ===== IMAGE CAROUSEL ===== */
+    .fixup-carousel {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #eaf2ff;
+      min-height: 280px;
+      box-shadow: 0 12px 36px rgba(37, 99, 235, 0.12);
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.65s ease;
+      will-change: transform;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      position: relative;
+      min-height: 280px;
+    }
+
+    .carousel-slide img {
+      display: block;
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+    }
+
+    .carousel-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 28px 24px 42px;
+      color: white;
+      background: linear-gradient(transparent, rgba(15, 23, 42, 0.86));
+    }
+
+    .carousel-caption h3 {
+      margin: 0 0 6px;
+      font-size: 1.45rem;
+    }
+
+    .carousel-caption p {
+      margin: 0;
+      font-size: 0.98rem;
+    }
+
+    .carousel-control {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      color: var(--primary);
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .carousel-control.prev { left: 14px; }
+    .carousel-control.next { right: 14px; }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 14px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      z-index: 3;
+    }
+
+    .carousel-dot {
+      width: 9px;
+      height: 9px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.6);
+      cursor: pointer;
+    }
+
+    .carousel-dot.active {
+      background: white;
+      transform: scale(1.25);
+    }
+
+    /* ===== BOOKING ESTIMATOR ===== */
+    .booking-summary {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      background: #f8fafc;
+    }
+
+    .price-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 8px 0;
+      color: var(--text-muted);
+    }
+
+    .price-line.total {
+      margin-top: 10px;
+      padding-top: 16px;
+      border-top: 2px solid var(--border);
+      color: var(--text-dark);
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .extra-charge-note {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .carousel-slide img { height: 260px; }
+      .carousel-caption { padding: 22px 18px 38px; }
+      .carousel-caption h3 { font-size: 1.15rem; }
+      .carousel-caption p { font-size: 0.88rem; }
+      .carousel-control { width: 36px; height: 36px; }
+      .price-line { font-size: 0.95rem; }
+    }
+</style>
+</head>
+<body>
+<!-- HEADER -->
+<header class="app-container">
+<nav class="navbar-custom">
+
+
+<a class="brand" href="#hero">
+<span class="brand-mark">F</span>
+<span>Fixup<span style="color: var(--secondary)">.</span></span>
+</a>
+<div class="nav-links">
+<button onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Services</button>
+<button onclick="document.getElementById('providers').scrollIntoView({behavior:'smooth'})">Providers</button>
+<button onclick="document.getElementById('custom-request').scrollIntoView({behavior:'smooth'})">Book Service</button>
+<button onclick="document.getElementById('provider-register').scrollIntoView({behavior:'smooth'})">Join as Pro</button>
+<button class="btn-fixup btn-light-fixup" data-auth="login">Login</button>
+<button class="btn-fixup btn-primary-fixup" data-auth="signup">Sign up</button>
+</div>
+<button class="hamburger" id="menuToggle">
+<i class="fas fa-bars"></i>
+</button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+<button onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Services</button>
+<button onclick="document.getElementById('providers').scrollIntoView({behavior:'smooth'})">Providers</button>
+<button onclick="document.getElementById('custom-request').scrollIntoView({behavior:'smooth'})">Book Service</button>
+<button onclick="document.getElementById('provider-register').scrollIntoView({behavior:'smooth'})">Join as Pro</button>
+<button class="btn-fixup btn-primary-fixup w-100 mt-3" data-auth="login">Login</button>
+<button class="btn-fixup btn-primary-fixup w-100 mt-2" data-auth="signup">Sign up</button>
+</div>
+</header>
+<!-- HERO SECTION -->
+<section class="hero-section" id="hero">
+<div class="app-container">
+<div class="row align-items-center">
+<div class="col-lg-6 hero-content">
+<h1>Your Home Deserves Professional Care</h1>
+<p>Connect with verified, experienced service professionals for all your home maintenance and repair needs. Quick, reliable, transparent pricing.</p>
+<div class="cta-buttons">
+<button class="btn-fixup btn-primary-fixup" data-auth="signup">Get Started Today</button>
+<button class="btn-fixup btn-light-fixup" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Explore Services</button>
+</div>
+</div>
+<div class="col-lg-6 text-center">
+<i class="fas fa-tools" style="font-size: 120px; color: var(--primary); opacity: 0.1;"></i>
+</div>
+</div>
+</div>
+</section>
+<!-- IMAGE CAROUSEL -->
+<section class="feature-section" id="image-carousel">
+<div class="app-container">
+<div class="section-title">
+<span class="section-badge">Fixup in Action</span>
+<h2>Reliable Help, Right When You Need It</h2>
+<p>Explore the professionals and services available through Fixup.</p>
+</div>
+<div aria-label="Fixup service images" class="fixup-carousel" id="fixupCarousel">
+<div class="carousel-track" id="carouselTrack">
+<article class="carousel-slide">
+<!-- INSERT CAROUSEL IMAGE 1 URL HERE -->
+<img alt="Professional home cleaning service" src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&amp;fit=crop&amp;w=1400&amp;q=85"/>
+<div class="carousel-caption">
+<h3>Professional Home Cleaning</h3>
+<p>Fresh, clean spaces handled by trained professionals.</p>
+</div>
+</article>
+<article class="carousel-slide">
+<!-- INSERT CAROUSEL IMAGE 2 URL HERE -->
+<img alt="Technician repairing home electrical equipment" src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&amp;fit=crop&amp;w=1400&amp;q=85"/>
+<div class="carousel-caption">
+<h3>Trusted Repairs</h3>
+<p>Skilled technicians for electrical, plumbing, and appliance needs.</p>
+</div>
+</article>
+<article class="carousel-slide">
+<!-- INSERT CAROUSEL IMAGE 3 URL HERE -->
+<img alt="Carpenter working on a home project" src="https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&amp;fit=crop&amp;w=1400&amp;q=85"/>
+<div class="carousel-caption">
+<h3>Home Improvement</h3>
+<p>From carpentry to painting, make your home feel better.</p>
+</div>
+</article>
+</div>
+<button aria-label="Previous image" class="carousel-control prev" id="carouselPrev">‹</button>
+<button aria-label="Next image" class="carousel-control next" id="carouselNext">›</button>
+<div aria-label="Choose carousel image" class="carousel-dots" id="carouselDots"></div>
+</div>
+</div>
+</section>
+
+<!-- SERVICES SECTION -->
+<section class="feature-section" id="services">
+<div class="app-container">
+<div class="section-title">
+<span class="section-badge">Available Services</span>
+<h2>All Your Home Services in One Place</h2>
+<p>From plumbing and electrical work to cleaning and maintenance - we've got everything covered</p>
+</div>
+<div class="row g-4">
+<div class="col-md-4">
+<div class="service-card">
+
+
+<div class="service-icon"><i class="fas fa-wrench"></i></div>
+<h4>Electrical &amp; Plumbing</h4>
+<p>Expert electricians and plumbers for installations, repairs, and maintenance.</p>
+</div>
+</div>
+<div class="col-md-4">
+<div class="service-card">
+
+
+<div class="service-icon"><i class="fas fa-broom"></i></div>
+<h4>Cleaning Services</h4>
+<p>Professional deep cleaning, kitchen and bathroom sanitization services.</p>
+</div>
+</div>
+<div class="col-md-4">
+<div class="service-card">
+
+
+<div class="service-icon"><i class="fas fa-fan"></i></div>
+<h4>AC &amp; Appliances</h4>
+<p>Air conditioning service, refrigerator repair, and appliance maintenance.</p>
+</div>
+</div>
+<div class="col-md-4">
+<div class="service-card">
+
+
+<div class="service-icon"><i class="fas fa-hammer"></i></div>
+<h4>Carpentry</h4>
+<p>Furniture repair, cabinet installation, and custom carpentry work.</p>
+</div>
+</div>
+<div class="col-md-4">
+<div class="service-card">
+
+
+<div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+<h4>Painting &amp; Decor</h4>
+<p>Interior and exterior painting, wallpaper installation, and decor consultation.</p>
+</div>
+</div>
+<div class="col-md-4">
+<div class="service-card">
+
+
+<div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+<h4>Pest Control</h4>
+<p>Safe, effective pest control and home protection solutions.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- PROVIDERS SECTION -->
+<section class="feature-section bg-light" id="providers">
+<div class="app-container">
+<div class="section-title">
+<span class="section-badge">Featured Professionals</span>
+<h2>Meet Our Verified Service Providers</h2>
+<p>Highly-rated professionals with proven track records and customer satisfaction</p>
+</div>
+<div class="row g-4">
+<div class="col-md-4">
+<article class="provider-card">
+<div class="d-flex align-items-center gap-3 mb-3">
+
+
+<img alt="Service provider" class="provider-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&amp;fit=crop&amp;w=160&amp;q=80"/>
+<div>
+<h5 class="mb-1">Rahul Sharma</h5>
+<small>Electrician · 4.8 ★</small>
+</div>
+</div>
+<p>8 years of experience in home wiring, switch repair, and electrical safety checks. 100% customer satisfaction.</p>
+<span class="badge text-bg-success">Verified Provider</span>
+</article>
+</div>
+<div class="col-md-4">
+<article class="provider-card">
+<div class="d-flex align-items-center gap-3 mb-3">
+
+
+<img alt="Service provider" class="provider-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&amp;fit=crop&amp;w=160&amp;q=80"/>
+<div>
+<h5 class="mb-1">Arvind Verma</h5>
+<small>Plumber · 4.9 ★</small>
+</div>
+</div>
+<p>Specialist in leakage repair, bathroom fittings, drainage, and water-pump maintenance with 12+ years experience.</p>
+<span class="badge text-bg-success">Verified Provider</span>
+</article>
+</div>
+<div class="col-md-4">
+<article class="provider-card">
+<div class="d-flex align-items-center gap-3 mb-3">
+
+
+<img alt="Service provider" class="provider-avatar" src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=crop&amp;w=160&amp;q=80"/>
+<div>
+<h5 class="mb-1">Sonal Singh</h5>
+<small>Home Cleaner · 4.7 ★</small>
+</div>
+</div>
+<p>Experienced in deep cleaning, kitchen cleaning, move-in cleaning, and home sanitisation with eco-friendly products.</p>
+<span class="badge text-bg-success">Verified Provider</span>
+</article>
+</div>
+</div>
+</div>
+</section>
+<!-- PRICE ESTIMATOR -->
+
+<!-- PRICE ESTIMATOR -->
+<section class="feature-section" id="price-estimator">
+<div class="app-container">
+<div class="section-title">
+<span class="section-badge">Price Estimator</span>
+<h2>Know Your Estimated Cost</h2>
+<p>Customize your service request and see the estimated total instantly.</p>
+</div>
+<div class="form-section">
+<div class="row g-4">
+<div class="col-lg-7">
+<div class="row g-3">
+<div class="col-md-6">
+<label class="form-label" for="estimate-service">Service Type</label>
+<select class="form-select" id="estimate-service">
+<option value="499">Basic Cleaning — ₹499</option>
+<option value="799">AC Service — ₹799</option>
+<option value="399">Plumbing Visit — ₹399</option>
+<option value="449">Electrical Repair — ₹449</option>
+<option value="299">Painting Consultation — ₹299</option>
+</select>
+</div>
+<div class="col-md-6">
+<label class="form-label" for="estimate-quantity">Quantity / Duration</label>
+<input class="form-control" id="estimate-quantity" max="20" min="1" type="number" value="1"/>
+</div>
+<div class="col-md-6">
+<label class="form-label" for="estimate-urgency">Urgency Level</label>
+<select class="form-select" id="estimate-urgency">
+<option value="0">Standard — ₹0</option>
+<option value="99">Priority — ₹99</option>
+<option value="199">Emergency — ₹199</option>
+</select>
+</div>
+<div class="col-md-6">
+<label class="form-label" for="estimate-addon">Optional Add-on</label>
+<select class="form-select" id="estimate-addon">
+<option value="0">No add-on — ₹0</option>
+<option value="149">Materials assistance — ₹149</option>
+<option value="249">Extended inspection — ₹249</option>
+<option value="299">Same-day follow-up — ₹299</option>
+</select>
+</div>
+</div>
+</div>
+<div class="col-lg-5">
+<div aria-live="polite" class="booking-summary">
+<h4>Estimate Summary</h4>
+<div class="price-line"><span>Base price</span><strong id="estimate-base">₹499</strong></div>
+<div class="price-line"><span>Quantity / duration</span><strong id="estimate-multiplier">× 1</strong></div>
+<div class="price-line"><span>Add-on charges</span><strong id="estimate-addon-total">₹0</strong></div>
+<div class="price-line"><span>Urgency charges</span><strong id="estimate-urgency-total">₹0</strong></div>
+<div class="price-line"><span>Extra charges</span><strong id="estimate-extra">₹0</strong></div>
+<div class="price-line total"><span>Estimated total</span><strong id="estimate-total">₹499</strong></div>
+<p class="extra-charge-note">Extra charges may apply based on location, service complexity, materials, and emergency requirements.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- MAINTENANCE REMINDERS -->
+<section class="feature-section bg-light" id="reminders">
+<div class="app-container">
+<div class="section-title">
+<span class="section-badge">Smart Reminders</span>
+<h2>Never Miss Home Maintenance</h2>
+<p>Automated reminders for seasonal and routine home care tasks</p>
+</div>
+<div class="feature-card">
+<div class="reminder-item">
+<div>
+<strong>AC Servicing</strong>
+<div class="text-muted small">Recommended every 6 months</div>
+</div>
+<span class="badge text-bg-warning">Due in 18 days</span>
+</div>
+<div class="reminder-item">
+<div>
+<strong>Water Purifier Filter</strong>
+<div class="text-muted small">Replacement reminder</div>
+</div>
+<span class="badge text-bg-info">Due next month</span>
+</div>
+<div class="reminder-item">
+<div>
+<strong>Pest Control</strong>
+<div class="text-muted small">Routine home protection</div>
+</div>
+<span class="badge text-bg-success">Up to date</span>
+</div>
+<a class="btn btn-primary mt-4" href="#custom-request" style="font-weight: 700; padding: 12px 24px; font-size: 1rem;">Schedule Maintenance</a>
+</div>
+</div>
+</section>
+<!-- CUSTOM REQUEST FORM -->
+<section class="feature-section" id="custom-request">
+<div class="app-container">
+<div class="section-title">
+<span class="section-badge">Book A Service</span>
+<h2>Tell Us What You Need</h2>
+<p>Describe your issue and our professionals will get back to you within 2 hours</p>
+</div>
+
+&lt;!-- INSERT BOOKING-SECTION IMAGE HERE: add a service/booking illustration above the form. --&gt;
+<div class="form-section">
+<form action="#booking">
+<div class="row g-4">
+<div class="col-md-6">
+<label class="form-label">Full Name</label>
+<input class="form-control" placeholder="Your full name" required="" type="text"/>
+</div>
+<div class="col-md-6">
+<label class="form-label">Phone Number</label>
+<input class="form-control" pattern="[0-9]{10}" placeholder="10-digit mobile number" required="" type="tel"/>
+</div>
+<div class="col-12">
+<label class="form-label">Service Address</label>
+<textarea class="form-control" placeholder="House/Flat, Street, Area, City, PIN code" required="" rows="2"></textarea>
+</div>
+<div class="col-md-6">
+<label class="form-label">Service Category</label>
+<select class="form-select" id="booking-category" required="">
+<option value="">Select category</option>
+<option>Plumbing</option>
+<option>Electrical</option>
+<option>Cleaning</option>
+<option>Appliance Repair</option>
+<option>Carpentry</option>
+<option>Other</option>
+</select>
+</div>
+<div class="col-md-6">
+<label class="form-label">Preferred Date</label>
+<input class="form-control" required="" type="date"/>
+</div>
+<div class="col-12">
+<label class="form-label">Describe the Problem</label>
+<textarea class="form-control" placeholder="Explain the issue, preferred time, and any special instructions" required="" rows="4"></textarea>
+</div>
+<div class="col-12">
+<label class="form-label">Upload Photo (Optional)</label>
+<input accept="image/*" class="form-control" type="file"/>
+</div>
+
+<div class="col-md-6">
+<label class="form-label" for="booking-quantity">Quantity / Duration</label>
+<input class="form-control" id="booking-quantity" max="20" min="1" required="" type="number" value="1"/>
+</div>
+<div class="col-md-6">
+<label class="form-label" for="booking-urgency">Urgency Level</label>
+<select class="form-select" id="booking-urgency" required="">
+<option value="0">Standard</option>
+<option value="99">Priority</option>
+<option value="199">Emergency</option>
+</select>
+</div>
+<div class="col-12">
+<label class="form-label" for="booking-addon">Optional Add-on</label>
+<select class="form-select" id="booking-addon">
+<option value="0">No add-on</option>
+<option value="149">Materials assistance — ₹149</option>
+<option value="249">Extended inspection — ₹249</option>
+<option value="299">Same-day follow-up — ₹299</option>
+</select>
+</div>
+<div class="col-12">
+<div aria-live="polite" class="booking-summary">
+<h4>Booking Summary</h4>
+<div class="price-line"><span>Estimated total</span><strong id="booking-total">₹399</strong></div>
+<p class="extra-charge-note">Extra charges may apply based on location, service complexity, materials, and emergency requirements.</p>
+</div>
+</div>
+<div class="col-12">
+<div class="form-check">
+<input class="form-check-input" id="emergency-check" type="checkbox"/>
+<label class="form-check-label" for="emergency-check">This is an emergency request (Charges may apply)</label>
+</div>
+</div>
+<div class="col-12">
+<button class="btn-fixup btn-primary-fixup w-100" style="padding: 14px; font-size: 1.05rem;" type="submit">Submit Service Request</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</section>
+<!-- PROVIDER REGISTRATION -->
+<section class="feature-section bg-light" id="provider-register">
+<div class="app-container">
+<div class="section-title">
+<span class="section-badge">Join Our Network</span>
+<h2>Register as a Service Professional</h2>
+<p>Start earning by offering your services through Fixup. 1000+ professionals already registered.</p>
+</div>
+<div class="form-section">
+<form action="#providers">
+<div class="row g-4">
+<div class="col-md-6">
+<label class="form-label">Full Name</label>
+<input class="form-control" placeholder="Your name" required="" type="text"/>
+</div>
+<div class="col-md-6">
+<label class="form-label">Mobile Number</label>
+<input class="form-control" pattern="[0-9]{10}" placeholder="10-digit number" required="" type="tel"/>
+</div>
+<div class="col-md-6">
+<label class="form-label">Primary Service</label>
+<select class="form-select" required="">
+<option value="">Choose service</option>
+<option>Electrician</option>
+<option>Plumber</option>
+<option>Cleaner</option>
+<option>AC Technician</option>
+<option>Carpenter</option>
+<option>Painter</option>
+<option>Appliance Repair</option>
+</select>
+</div>
+<div class="col-md-6">
+<label class="form-label">Years of Experience</label>
+<input class="form-control" min="0" placeholder="e.g., 5" required="" type="number"/>
+</div>
+<div class="col-12">
+<label class="form-label">Work Location / Service Area</label>
+<input class="form-control" placeholder="City, areas covered, or business address" required="" type="text"/>
+</div>
+<div class="col-md-6">
+<label class="form-label">ID Proof</label>
+<input accept="image/*,.pdf" class="form-control" required="" type="file"/>
+</div>
+<div class="col-md-6">
+<label class="form-label">Profile Photo</label>
+<input accept="image/*" class="form-control" type="file"/>
+</div>
+<div class="col-12">
+<label class="form-label">About Your Services</label>
+<textarea class="form-control" placeholder="Describe your skills, availability, and service charges" rows="3"></textarea>
+</div>
+<div class="col-12">
+<button class="btn-fixup" style="background: var(--success); color: white; width: 100%; padding: 14px; font-size: 1.05rem;" type="submit">Register as Service Professional</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</section>
+<!-- AUTHENTICATION MODAL -->
+<div aria-modal="true" class="modal-backdrop-fixup hidden" id="authModal" role="dialog">
+<div class="modal-fixup">
+<div class="d-flex justify-content-between align-items-center mb-3">
+<a class="brand" href="#hero" style="margin: 0;">
+<span class="brand-mark">F</span>
+<span>Fixup<span style="color: var(--secondary)">.</span></span>
+</a>
+<button class="modal-close" id="closeAuth">×</button>
+</div>
+<div class="auth-switch">
+<button class="active" id="loginTab">Login</button>
+<button id="signupTab">Sign up</button>
+</div>
+<h2 id="authTitle" style="font-size: 1.8rem; margin: 16px 0;">Welcome back</h2>
+<p class="text-muted small" id="authSubtitle">Log in to manage your home services.</p>
+<form id="authForm">
+<div class="field hidden" id="authNameWrap">
+<label class="form-label-fixup">Full name</label>
+<input class="form-control-fixup" id="authName"/>
+</div>
+<div class="field">
+<label class="form-label-fixup">Email address</label>
+<input class="form-control-fixup" id="authEmail" required="" type="email"/>
+</div>
+<div class="field">
+<label class="form-label-fixup">Password</label>
+<input class="form-control-fixup" id="authPassword" required="" type="password"/>
+</div>
+<button class="btn-fixup btn-primary-fixup w-100" id="authSubmit" style="margin-top: 12px; padding: 12px;">Login to Fixup ↗</button>
+</form>
+<div class="message hidden" id="authMessage" style="margin-top: 16px;"></div>
+</div>
+</div>
+<!-- FOOTER -->
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-section">
+<div class="brand" style="color: white; margin-bottom: 16px;">
+<span class="brand-mark">F</span>
+<span>Fixup</span>
+</div>
+<p>Making professional home services accessible to everyone. Book trusted professionals instantly.</p>
+</div>
+<div class="footer-section">
+<h4>Services</h4>
+<ul>
+<li><a href="#services">Electrical Work</a></li>
+<li><a href="#services">Plumbing</a></li>
+<li><a href="#services">Cleaning</a></li>
+<li><a href="#services">AC &amp; Appliances</a></li>
+<li><a href="#services">Carpentry</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4>For Customers</h4>
+<ul>
+<li><a href="#custom-request">Book a Service</a></li>
+<li><a href="#price-estimator">Price Estimator</a></li>
+<li><a href="#reminders">Maintenance Reminders</a></li>
+<li><a href="#providers">Find Providers</a></li>
+<li><a href="javascript:void(0)">FAQ</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4>For Professionals</h4>
+<ul>
+<li><a href="#provider-register">Register as Pro</a></li>
+<li><a href="javascript:void(0)">Grow Your Business</a></li>
+<li><a href="javascript:void(0)">Pricing</a></li>
+<li><a href="javascript:void(0)">Support</a></li>
+<li><a href="javascript:void(0)">Partner with Us</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-divider">
+<div class="footer-bottom">
+<p> A Project by Arpit Singh, Arjun Singh Aayush Kumar</p>
+<p>© 2026 Fixup. All rights reserved. Professional home services made simple.</p>
+<div class="social-links">
+<a href="javascript:void(0)" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+<a href="javascript:void(0)" title="Twitter"><i class="fab fa-twitter"></i></a>
+<a href="javascript:void(0)" title="Instagram"><i class="fab fa-instagram"></i></a>
+<a href="javascript:void(0)" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<!-- TOAST NOTIFICATION -->
+<div aria-live="polite" class="toast-fixup hidden" id="toast"></div>
+
+<script>
+(() => {
+  'use strict';
+
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+  let authMode = 'login';
+  let toastTimer;
+
+  function toast(message) {
+    const toastElement = $('#toast');
+    if (!toastElement) return;
+    toastElement.textContent = message;
+    toastElement.classList.remove('hidden');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastElement.classList.add('hidden'), 3200);
+  }
+
+  // ===== AUTHENTICATION MODAL =====
+  function openAuth(mode) {
+    authMode = mode;
+    $('#authModal')?.classList.remove('hidden');
+    $('#authNameWrap')?.classList.toggle('hidden', mode === 'login');
+    $('#loginTab')?.classList.toggle('active', mode === 'login');
+    $('#signupTab')?.classList.toggle('active', mode === 'signup');
+    if ($('#authTitle')) $('#authTitle').textContent = mode === 'login' ? 'Welcome back' : 'Create your Fixup account';
+    if ($('#authSubtitle')) $('#authSubtitle').textContent = mode === 'login'
+      ? 'Log in to manage your home services.'
+      : 'Join Fixup and simplify your home care.';
+    if ($('#authSubmit')) $('#authSubmit').textContent = mode === 'login' ? 'Login to Fixup ↗' : 'Create account ↗';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeAuth() {
+    $('#authModal')?.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  $$('[data-auth]').forEach(button => {
+    button.addEventListener('click', () => openAuth(button.dataset.auth));
+  });
+  $('#closeAuth')?.addEventListener('click', closeAuth);
+  $('#loginTab')?.addEventListener('click', () => openAuth('login'));
+  $('#signupTab')?.addEventListener('click', () => openAuth('signup'));
+  $('#authModal')?.addEventListener('click', event => {
+    if (event.target.id === 'authModal') closeAuth();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeAuth();
+  });
+  $('#authForm')?.addEventListener('submit', event => {
+    event.preventDefault();
+    const message = $('#authMessage');
+    if (message) {
+      message.textContent = authMode === 'login'
+        ? 'Demo login successful.'
+        : 'Demo account created successfully.';
+      message.classList.remove('hidden');
+    }
+    toast('Demo authentication completed.');
+    setTimeout(closeAuth, 900);
+  });
+
+  // ===== RESPONSIVE NAVIGATION =====
+  $('#menuToggle')?.addEventListener('click', () => {
+    $('#mobileMenu')?.classList.toggle('open');
+  });
+
+  $$('.mobile-menu button').forEach(button => {
+    button.addEventListener('click', () => $('#mobileMenu')?.classList.remove('open'));
+  });
+
+  window.addEventListener('scroll', () => {
+    $('.navbar-custom')?.classList.toggle('scrolled', window.scrollY > 10);
+  }, { passive: true });
+
+  // ===== IMAGE CAROUSEL =====
+  const carousel = $('#fixupCarousel');
+  const track = $('#carouselTrack');
+  const slides = $$('.carousel-slide', track || document);
+  const dots = $('#carouselDots');
+  let currentSlide = 0;
+  let carouselTimer;
+
+  function renderCarousel() {
+    if (!track || !slides.length) return;
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    if (dots) {
+      $$('.carousel-dot', dots).forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+        dot.setAttribute('aria-current', index === currentSlide ? 'true' : 'false');
+      });
+    }
+  }
+
+  function goToSlide(index) {
+    currentSlide = (index + slides.length) % slides.length;
+    renderCarousel();
+  }
+
+  function stopCarousel() {
+    clearInterval(carouselTimer);
+  }
+
+  function startCarousel() {
+    stopCarousel();
+    if (slides.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      carouselTimer = setInterval(() => goToSlide(currentSlide + 1), 5000);
+    }
+  }
+
+  if (dots && slides.length) {
+    slides.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot';
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Show image ${index + 1}`);
+      dot.addEventListener('click', () => {
+        goToSlide(index);
+        startCarousel();
+      });
+      dots.appendChild(dot);
+    });
+  }
+
+  $('#carouselPrev')?.addEventListener('click', () => {
+    goToSlide(currentSlide - 1);
+    startCarousel();
+  });
+  $('#carouselNext')?.addEventListener('click', () => {
+    goToSlide(currentSlide + 1);
+    startCarousel();
+  });
+  carousel?.addEventListener('mouseenter', stopCarousel);
+  carousel?.addEventListener('mouseleave', startCarousel);
+  carousel?.addEventListener('focusin', stopCarousel);
+  carousel?.addEventListener('focusout', startCarousel);
+  renderCarousel();
+  startCarousel();
+
+  // ===== PRICE CALCULATIONS =====
+  const currency = value => `₹${Math.round(value).toLocaleString('en-IN')}`;
+
+  function calculateEstimate(service, quantity, urgency, addon) {
+    const base = Number(service?.value || 0);
+    const count = Math.max(1, Math.min(20, Number(quantity?.value) || 1));
+    const urgencyCharge = Number(urgency?.value || 0);
+    const addonCharge = Number(addon?.value || 0);
+    const serviceTotal = base * count;
+    const extraCharge = Math.round(serviceTotal * 0.05);
+    return {
+      base,
+      count,
+      urgencyCharge,
+      addonCharge,
+      extraCharge,
+      total: serviceTotal + urgencyCharge + addonCharge + extraCharge
+    };
+  }
+
+  function updateEstimate() {
+    const result = calculateEstimate(
+      $('#estimate-service'),
+      $('#estimate-quantity'),
+      $('#estimate-urgency'),
+      $('#estimate-addon')
+    );
+    if (!$('#estimate-service')) return;
+    $('#estimate-base').textContent = currency(result.base);
+    $('#estimate-multiplier').textContent = `× ${result.count}`;
+    $('#estimate-addon-total').textContent = currency(result.addonCharge);
+    $('#estimate-urgency-total').textContent = currency(result.urgencyCharge);
+    $('#estimate-extra').textContent = currency(result.extraCharge);
+    $('#estimate-total').textContent = currency(result.total);
+  }
+
+  ['estimate-service', 'estimate-quantity', 'estimate-urgency', 'estimate-addon']
+    .forEach(id => $(`#${id}`)?.addEventListener('input', updateEstimate));
+  updateEstimate();
+
+  function updateBookingTotal() {
+    const category = $('#booking-category');
+    const quantity = $('#booking-quantity');
+    const urgency = $('#booking-urgency');
+    const addon = $('#booking-addon');
+    const bookingTotal = $('#booking-total');
+    if (!bookingTotal) return;
+
+    const categoryPrices = {
+      Plumbing: 399,
+      Electrical: 449,
+      Cleaning: 499,
+      'Appliance Repair': 799,
+      Carpentry: 599,
+      Other: 299
+    };
+    const base = categoryPrices[category?.value] || 299;
+    const count = Math.max(1, Number(quantity?.value) || 1);
+    const urgencyCharge = Number(urgency?.value || 0);
+    const addonCharge = Number(addon?.value || 0);
+    const extraCharge = Math.round(base * count * 0.05);
+    bookingTotal.textContent = currency(base * count + urgencyCharge + addonCharge + extraCharge);
+  }
+
+  ['booking-category', 'booking-quantity', 'booking-urgency', 'booking-addon']
+    .forEach(id => $(`#${id}`)?.addEventListener('input', updateBookingTotal));
+  updateBookingTotal();
+
+  // ===== SERVICE SHORTCUTS AND DEMO FORMS =====
+  $$('[data-profile]').forEach(button => {
+    button.addEventListener('click', () => toast(`Profile preview opened for ${button.dataset.profile}`));
+  });
+
+  $$('[data-book]').forEach(button => {
+    button.addEventListener('click', () => {
+      const category = $('#booking-category');
+      if (category) category.value = button.dataset.book;
+      $('#custom-request')?.scrollIntoView({ behavior: 'smooth' });
+      updateBookingTotal();
+      toast('Service selected. Complete the booking form.');
+    });
+  });
+
+  $$('form[action^="#"]').forEach(form => {
+    if (form.id === 'authForm' || form.id === 'custom-request') return;
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      toast('Demo request captured. Connect a backend to process it.');
+    });
+  });
+
+  // ===== BOOKING SUBMISSION =====
+  const bookingForm = $('#custom-request form');
+  bookingForm?.addEventListener('submit', event => {
+    event.preventDefault();
+    if (!bookingForm.checkValidity()) {
+      bookingForm.reportValidity();
+      return;
+    }
+    const total = $('#booking-total')?.textContent || 'the estimated amount';
+    toast(`Service request submitted. Estimated total: ${total}`);
+    const confirmation = document.createElement('div');
+    confirmation.className = 'message mt-3';
+    confirmation.textContent = `Your demo booking request was captured. Estimated total: ${total}.`;
+    bookingForm.appendChild(confirmation);
+  });
+})();
+</script>
+
+</body>
+</html>
