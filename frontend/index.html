@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fixup — Your Home Deserves the Best. Book Trusted Professionals</title>
+  
+  <!-- Font Awesome & Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Fixup Commercial Design System -->
+  <link rel="stylesheet" href="frontend/css/themes.css">
+  <link rel="stylesheet" href="frontend/css/global.css">
+  <link rel="stylesheet" href="frontend/css/navbar.css?v=navfix3">
+  <link rel="stylesheet" href="frontend/css/home.css">
+</head>
+<body>
+
+  <!-- Dynamic Universal Navbar -->
+  <div id="navbar-mount"></div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="container-custom">
+        <div class="hero-grid">
+          <div>
+            <h1 class="hero-heading">
+              Your Home Deserves the Best.<br>
+              <span class="hero-heading-highlight">Book Trusted Professionals.</span>
+            </h1>
+            <p class="hero-subheading">
+              Fixup connects your household with certified electricians, master plumbers, deep cleaners, AC engineers, and carpenters with fixed upfront rates and a 30-day work warranty.
+            </p>
+
+            <div class="hero-cta-group">
+              <a href="frontend/pages/request-service.html" class="btn-fixup btn-primary-fixup btn-lg">
+                <i class="fa-solid fa-calendar-plus"></i> Request a Service
+              </a>
+              <a href="frontend/pages/emergency.html" class="btn-fixup btn-emergency btn-lg">
+                <i class="fa-solid fa-bolt"></i> Emergency Request (60-Min)
+              </a>
+            </div>
+
+            <!-- Statistics Strip -->
+            <div class="hero-metrics-strip">
+              <div class="hero-metric-item">
+                <div class="hero-metric-num">15,400+</div>
+                <div class="hero-metric-label">Completed Jobs</div>
+              </div>
+              <div class="hero-metric-item">
+                <div class="hero-metric-num">1,250+</div>
+                <div class="hero-metric-label">Verified Specialists</div>
+              </div>
+              <div class="hero-metric-item">
+                <div class="hero-metric-num">4.94 ★</div>
+                <div class="hero-metric-label">Customer Satisfaction</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Real Images of Professional Technicians -->
+          <div class="hero-visual-wrapper">
+            <div class="hero-main-image-card">
+              <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" alt="Professional Electrician" class="hero-main-img">
+            </div>
+
+            <div class="hero-floating-card-1">
+              <div style="width: 42px; height: 42px; border-radius: 50%; background: var(--success-light); color: var(--success); display: grid; place-items: center; font-size: 1.2rem;">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div>
+                <strong style="font-size: 0.92rem; color: var(--text-primary); display: block;">15-Day KYC Audit</strong>
+                <span style="font-size: 0.78rem; color: var(--text-muted);">Aadhaar & Police Verified</span>
+              </div>
+            </div>
+
+            <div class="hero-floating-card-2">
+              <div style="width: 42px; height: 42px; border-radius: 50%; background: var(--primary-light); color: var(--primary); display: grid; place-items: center; font-size: 1.2rem;">
+                <i class="fa-solid fa-clock-fast"></i>
+              </div>
+              <div>
+                <strong style="font-size: 0.92rem; color: var(--text-primary); display: block;">Rapid Dispatch</strong>
+                <span style="font-size: 0.78rem; color: var(--text-muted);">Avg. Arrival in 18 Mins</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEARCH SERVICES STRIP -->
+    <section class="search-strip-section">
+      <div class="container-custom">
+        <form class="search-box-card" action="frontend/pages/services.html" method="GET">
+          <div class="search-field">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" name="q" placeholder="Which service do you need? (e.g., tap leak, switchboard, AC jet wash)...">
+          </div>
+          <div class="search-field">
+            <i class="fa-solid fa-location-dot"></i>
+            <select name="location">
+              <option value="Delhi NCR">Delhi NCR & Noida</option>
+              <option value="Gurugram">Gurugram & Cyber City</option>
+              <option value="Ghaziabad">Ghaziabad & Indirapuram</option>
+              <option value="Bengaluru">Bengaluru Urban</option>
+              <option value="Mumbai">Mumbai & Navi Mumbai</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-fixup btn-primary-fixup btn-lg">
+            Find Professionals
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- POPULAR SERVICES SECTION -->
+    <section class="services-section">
+      <div class="container-custom">
+        <div class="section-header">
+          <span class="section-badge">Verified Home Solutions</span>
+          <h2 class="section-title">Most Popular Home Services</h2>
+          <p class="section-subtitle">
+            Book certified, background-checked trade specialists equipped with modern tools and standard rate cards.
+          </p>
+        </div>
+
+        <div class="service-grid">
+          <!-- Plumbing -->
+          <a href="frontend/pages/service-details.html?id=srv-plumb" class="service-card-item">
+            <div class="service-img-box">
+              <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" alt="Plumbing Specialist Working on Pipes">
+              <span class="service-card-badge">Certified Master</span>
+              <div class="service-card-rating"><i class="fa-solid fa-star text-warning"></i> 4.88 (420)</div>
+            </div>
+            <div class="service-card-body">
+              <h3 class="service-card-title">Plumbing & Water System Fix</h3>
+              <p class="service-card-desc">Tap repair, drain snaking, pipe leakages, overhead tank valves and geyser fittings.</p>
+              <div class="service-card-footer">
+                <div>
+                  <small style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Standard Rate</small>
+                  <div class="service-card-price">₹399</div>
+                </div>
+                <span class="btn-fixup btn-outline-fixup btn-sm">View Details</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Electrical -->
+          <a href="frontend/pages/service-details.html?id=srv-elec" class="service-card-item">
+            <div class="service-img-box">
+              <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" alt="Electrician Repairing Electrical Equipment">
+              <span class="service-card-badge">Top Popular</span>
+              <div class="service-card-rating"><i class="fa-solid fa-star text-warning"></i> 4.92 (382)</div>
+            </div>
+            <div class="service-card-body">
+              <h3 class="service-card-title">Electrical Repairs & Wiring</h3>
+              <p class="service-card-desc">Short-circuit triage, ceiling fan setup, switchboards, MCB distribution box and earthing tests.</p>
+              <div class="service-card-footer">
+                <div>
+                  <small style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Standard Rate</small>
+                  <div class="service-card-price">₹449</div>
+                </div>
+                <span class="btn-fixup btn-outline-fixup btn-sm">View Details</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- AC Repair -->
+          <a href="frontend/pages/service-details.html?id=srv-ac" class="service-card-item">
+            <div class="service-img-box">
+              <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=800&q=80" alt="AC Technician Servicing Air Conditioner">
+              <span class="service-card-badge">Seasonal Essential</span>
+              <div class="service-card-rating"><i class="fa-solid fa-star text-warning"></i> 4.89 (340)</div>
+            </div>
+            <div class="service-card-body">
+              <h3 class="service-card-title">AC Servicing & Gas Charging</h3>
+              <p class="service-card-desc">High-pressure jet coil cleaning, freon gas leakage detection, PCB diagnostics and cooling check.</p>
+              <div class="service-card-footer">
+                <div>
+                  <small style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Standard Rate</small>
+                  <div class="service-card-price">₹599</div>
+                </div>
+                <span class="btn-fixup btn-outline-fixup btn-sm">View Details</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Cleaning -->
+          <a href="frontend/pages/service-details.html?id=srv-clean" class="service-card-item">
+            <div class="service-img-box">
+              <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80" alt="Deep Cleaning Professionals at Work">
+              <span class="service-card-badge">Top Rated</span>
+              <div class="service-card-rating"><i class="fa-solid fa-star text-warning"></i> 4.94 (512)</div>
+            </div>
+            <div class="service-card-body">
+              <h3 class="service-card-title">Deep Home & Kitchen Cleaning</h3>
+              <p class="service-card-desc">Mechanized floor scrubbing, chimney degreasing, bathroom descaling and sofa sterilization.</p>
+              <div class="service-card-footer">
+                <div>
+                  <small style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Standard Rate</small>
+                  <div class="service-card-price">₹699</div>
+                </div>
+                <span class="btn-fixup btn-outline-fixup btn-sm">View Details</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+          <a href="frontend/pages/services.html" class="btn-fixup btn-secondary-fixup btn-lg">
+            Explore All Services & Add-ons <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW FIXUP WORKS SECTION -->
+    <section class="how-it-works-section">
+      <div class="container-custom">
+        <div class="section-header">
+          <span class="section-badge">Simple & Seamless</span>
+          <h2 class="section-title">How Fixup Works</h2>
+          <p class="section-subtitle">
+            Reliable household assistance is only four transparent steps away.
+          </p>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num-badge">1</div>
+            <h4 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 8px;">Select Service</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              Choose your required household repair, select custom add-on parts, and specify problem details.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num-badge">2</div>
+            <h4 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 8px;">Instant Upfront Estimate</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              View an itemized, transparent cost estimate including daytime or night tariffs. Zero hidden charges.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num-badge">3</div>
+            <h4 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 8px;">Verified Pro Dispatched</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              The nearest police-verified specialist accepts your request and arrives with authentic tools.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num-badge">4</div>
+            <h4 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 8px;">Pay Cashless with Warranty</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              Inspect the completed work, pay seamlessly via UPI or Card, and enjoy a guaranteed 30-day work warranty.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE FIXUP -->
+    <section class="why-us-section">
+      <div class="container-custom">
+        <div class="section-header">
+          <span class="section-badge">Peace of Mind</span>
+          <h2 class="section-title">Why Indian Households Choose Fixup</h2>
+          <p class="section-subtitle">
+            We removed the traditional anxiety, lack of accountability, and unfair price gouging from home services.
+          </p>
+        </div>
+
+        <div class="why-us-grid">
+          <div class="why-card">
+            <div class="why-icon"><i class="fa-solid fa-id-card-clip"></i></div>
+            <h4 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 8px;">15-Day Recurring KYC</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              Unlike platforms that verify technicians only once, Fixup enforces ongoing identity, police, and skill recertification every 15 days.
+            </p>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+            <h4 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 8px;">Fixed Transparent Tariffs</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              Standardized rate cards for every fixture, switch, or pipe. No awkward doorstep bargaining or surprise bill additions.
+            </p>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon"><i class="fa-solid fa-shield-heart"></i></div>
+            <h4 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 8px;">30-Day Work Guarantee</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              If the exact issue recurs within 30 days of completion, our senior engineer re-visits and fixes it free of charge.
+            </p>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon"><i class="fa-solid fa-truck-fast"></i></div>
+            <h4 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 8px;">60-Minute Rapid Rush</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              Midnight pipe leaks or sparking switchboards? Our emergency dispatch connects you to on-duty specialists in under an hour.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VERIFIED PROFESSIONALS SPOTLIGHT -->
+    <section class="verified-pros-section">
+      <div class="container-custom">
+        <div class="section-header">
+          <span class="section-badge">Our Craftsmanship</span>
+          <h2 class="section-title">Meet Our Verified Specialists</h2>
+          <p class="section-subtitle">
+            Trained, insured, and background-checked technicians ready to assist your household.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+          <div class="pro-spotlight-card">
+            <img src="https://images.unsplash.com/photo-1540569014015-19a7be504e3a?auto=format&fit=crop&w=300&q=80" alt="Rajesh Sharma" class="pro-spotlight-avatar">
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <h4 style="font-size: 1.15rem; font-weight: 800; margin: 0;">Rajesh Sharma</h4>
+                <span class="badge-fixup badge-success"><i class="fa-solid fa-shield-check"></i> Verified</span>
+              </div>
+              <div style="font-size: 0.85rem; color: var(--primary); font-weight: 700; margin: 2px 0 6px 0;">Master Electrician • 8 Yrs Exp</div>
+              <div style="font-size: 0.82rem; color: var(--text-muted);">412 Completed Jobs • 4.94 ★ Rating</div>
+            </div>
+          </div>
+
+          <div class="pro-spotlight-card">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="Vikram Chawla" class="pro-spotlight-avatar">
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <h4 style="font-size: 1.15rem; font-weight: 800; margin: 0;">Vikram Chawla</h4>
+                <span class="badge-fixup badge-success"><i class="fa-solid fa-shield-check"></i> Verified</span>
+              </div>
+              <div style="font-size: 0.85rem; color: var(--primary); font-weight: 700; margin: 2px 0 6px 0;">Plumbing Specialist • 6 Yrs Exp</div>
+              <div style="font-size: 0.82rem; color: var(--text-muted);">334 Completed Jobs • 4.88 ★ Rating</div>
+            </div>
+          </div>
+
+          <div class="pro-spotlight-card">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" alt="Sunita Devi" class="pro-spotlight-avatar">
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <h4 style="font-size: 1.15rem; font-weight: 800; margin: 0;">Sunita Devi</h4>
+                <span class="badge-fixup badge-success"><i class="fa-solid fa-shield-check"></i> Verified</span>
+              </div>
+              <div style="font-size: 0.85rem; color: var(--primary); font-weight: 700; margin: 2px 0 6px 0;">Deep Cleaning Expert • 7 Yrs Exp</div>
+              <div style="font-size: 0.82rem; color: var(--text-muted);">560 Completed Jobs • 4.96 ★ Rating</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUSTOMER TESTIMONIALS -->
+    <section class="testimonials-section">
+      <div class="container-custom">
+        <div class="section-header">
+          <span class="section-badge">Real Stories</span>
+          <h2 class="section-title">Trusted by Thousands of Families</h2>
+          <p class="section-subtitle">Read unfiltered experiences from satisfied homeowners across the city.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px;">
+          <div class="testimonial-card">
+            <div class="testimonial-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="testimonial-quote">
+              "We had a midnight electrical MCB blowout during heavy rains. Rajesh reached in 25 minutes, diagnosed the moisture in the conduit, and fixed it safely. Absolute lifesaver!"
+            </p>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Priya Verma" class="author-avatar">
+              <div>
+                <strong style="font-size: 0.95rem; color: var(--text-primary); display: block;">Priya Verma</strong>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Lotus Boulevard, Sector 100</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="testimonial-quote">
+              "No bargaining, no surprise fees. Vikram unclogged our kitchen pipeline in 40 minutes using a motorized snake camera and left the floor completely clean."
+            </p>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" alt="Aman Mehra" class="author-avatar">
+              <div>
+                <strong style="font-size: 0.95rem; color: var(--text-primary); display: block;">Aman Mehra</strong>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Indirapuram, Ghaziabad</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="testimonial-quote">
+              "Sunita's deep cleaning team cleaned our 3BHK before Diwali. Every corner of the kitchen and bathroom was shining like brand new. Highest recommendation!"
+            </p>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80" alt="Kavita Sengupta" class="author-avatar">
+              <div>
+                <strong style="font-size: 0.95rem; color: var(--text-primary); display: block;">Kavita Sengupta</strong>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Defence Colony, New Delhi</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FREQUENTLY ASKED QUESTIONS -->
+    <section class="faq-section">
+      <div class="container-custom" style="max-width: 820px;">
+        <div class="section-header">
+          <span class="section-badge">Got Questions?</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-subtitle">Everything you need to know about Fixup home services.</p>
+        </div>
+
+        <div class="faq-item active">
+          <button class="faq-question">
+            <span>How does Fixup verify service professionals?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            Every technician must pass government ID (Aadhaar/PAN) checks, criminal background verification, and a mandatory skill evaluation. Furthermore, our platform requires recurring re-verification every 15 days to maintain the "Fixup Verified" shield.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Are there any hidden doorstep surcharges?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            No. Fixup strictly guarantees transparent upfront pricing. Any required replacement parts or night surcharges are itemized and displayed before you confirm your request.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What is the 30-day work warranty?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            If the issue addressed by our specialist recurs within 30 days of completion, simply open your customer dashboard and request a warranty re-visit. A senior professional will fix the issue with zero inspection charges.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How do Emergency 60-Minute Requests work?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            When you select an Emergency Request, our automated dispatch algorithm broadcasts a high-priority alert to all online verified professionals within an 8-kilometer radius, prioritizing arrival in under an hour.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Universal Footer Mount -->
+  <div id="footer-mount"></div>
+
+  <!-- Scripts -->
+  <script src="frontend/js/theme.js"></script>
+  <script src="frontend/js/store.js"></script>
+  <script src="frontend/js/app.js?v=navfix3"></script>
+  <script>
+    // FAQ Accordion interaction
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        item.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>

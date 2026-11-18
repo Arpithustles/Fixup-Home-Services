@@ -11,7 +11,9 @@ const db = require('./config/db');
 
 const PORT = process.env.PORT || 5000;
 const PROJECT_ROOT = path.resolve(__dirname, '..');
-const FRONTEND_ROOT = path.join(PROJECT_ROOT, 'frontend');
+// The document root is the project directory; frontend assets live beneath it.
+const FRONTEND_ROOT = PROJECT_ROOT;
+const FRONTEND_ASSETS_ROOT = path.join(FRONTEND_ROOT, 'frontend');
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -122,13 +124,13 @@ const server = http.createServer(async (req, res) => {
     }
 
     // Serve the landing page and files contained in the frontend directory only.
-    if ((method === 'GET' || method === 'HEAD') && pathname === '/') {
+    if ((method === 'GET' || method === 'HEAD') && (pathname === '/' || pathname === '/index.html')) {
       let indexPath = path.join(PROJECT_ROOT, 'index.html');
       try {
         await fs.promises.access(indexPath, fs.constants.R_OK);
       } catch (err) {
-        indexPath = path.join(FRONTEND_ROOT, 'index.html');
-        return await serveStaticFile(req, res, indexPath, FRONTEND_ROOT);
+        indexPath = path.join(FRONTEND_ASSETS_ROOT, 'index.html');
+        return await serveStaticFile(req, res, indexPath, FRONTEND_ASSETS_ROOT);
       }
       return await serveStaticFile(req, res, indexPath, PROJECT_ROOT);
     }
@@ -143,11 +145,11 @@ const server = http.createServer(async (req, res) => {
         return sendJson(res, 404, { success: false, error: 'File not found.' });
       }
 
-      const filePath = path.resolve(FRONTEND_ROOT, relativePath);
-      if (filePath !== FRONTEND_ROOT && !filePath.startsWith(FRONTEND_ROOT + path.sep)) {
+      const filePath = path.resolve(FRONTEND_ASSETS_ROOT, relativePath);
+      if (filePath !== FRONTEND_ASSETS_ROOT && !filePath.startsWith(FRONTEND_ASSETS_ROOT + path.sep)) {
         return sendJson(res, 404, { success: false, error: 'File not found.' });
       }
-      return await serveStaticFile(req, res, filePath, FRONTEND_ROOT);
+      return await serveStaticFile(req, res, filePath, FRONTEND_ASSETS_ROOT);
     }
 
     // Services
@@ -210,11 +212,11 @@ const server = http.createServer(async (req, res) => {
         return sendJson(res, 404, { success: false, error: 'File not found.' });
       }
 
-      const filePath = path.resolve(FRONTEND_ROOT, relativePath);
-      if (filePath !== FRONTEND_ROOT && !filePath.startsWith(FRONTEND_ROOT + path.sep)) {
+      const filePath = path.resolve(FRONTEND_ASSETS_ROOT, relativePath);
+      if (filePath !== FRONTEND_ASSETS_ROOT && !filePath.startsWith(FRONTEND_ASSETS_ROOT + path.sep)) {
         return sendJson(res, 404, { success: false, error: 'File not found.' });
       }
-      return await serveStaticFile(req, res, filePath, FRONTEND_ROOT);
+      return await serveStaticFile(req, res, filePath, FRONTEND_ASSETS_ROOT);
     }
 
     // Fallback 404
