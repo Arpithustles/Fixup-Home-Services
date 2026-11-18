@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fixup — Customer Hub & Home Service Booking</title>
+  
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Shared & Module Stylesheets -->
+  <link rel="stylesheet" href="../shared/shared.css">
+  <link rel="stylesheet" href="user.css">
+</head>
+<body>
+
+  <!-- HERO & SEARCH SECTION -->
+  <header class="user-hero">
+    <div class="user-hero-inner">
+      <div class="user-hero-badge">
+        <i class="fa-solid fa-shield-halved"></i> 100% Verified Professionals & Fixed Transparent Pricing
+      </div>
+      <h1 class="user-hero-title">
+        Apke Ghar Ka Har Kaam,<br>
+        <span style="background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          Ab Ek Call Pe.
+        </span>
+      </h1>
+      <p class="user-hero-subtitle">
+        Book certified electricians, master plumbers, deep cleaners, AC engineers and carpenters with guaranteed satisfaction and live tracking.
+      </p>
+
+      <!-- Instant Search Box -->
+      <div class="user-search-wrapper">
+        <div class="search-input-group">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="serviceSearchInput" placeholder="What service do you need today? (e.g., wiring, tap leak, AC jet wash)...">
+        </div>
+        <div class="search-location-select" title="Change service location">
+          <i class="fa-solid fa-location-dot" style="color: var(--danger);"></i>
+          <span>Delhi NCR / Noida</span>
+          <i class="fa-solid fa-angle-down" style="font-size: 0.8rem;"></i>
+        </div>
+        <button class="fx-btn fx-btn-primary" onclick="document.getElementById('servicesGrid').scrollIntoView({behavior:'smooth'})">
+          Find Pros
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main style="max-width: 1280px; margin: 30px auto; padding: 0 24px;">
+
+    <!-- ROTATING INSPIRATIONAL QUOTE BANNER -->
+    <div class="quote-banner">
+      <div class="quote-text" id="dynamicQuoteText" style="transition: opacity 0.3s ease;">
+        "Apke Ghar Ka Har Kaam, Ab Ek Call Pe."
+      </div>
+      <div class="quote-author" id="dynamicQuoteAuthor">
+        — Fixup Core Mission
+      </div>
+    </div>
+
+    <!-- ACTIVE BOOKINGS & LIVE TRACKER -->
+    <section id="active-bookings-section" class="active-bookings-container">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 12px;">
+        <div>
+          <span class="fx-badge fx-badge-blue">Live Telemetry</span>
+          <h2 style="font-size: 1.8rem; font-weight: 800; margin-top: 6px;">Your Active Service Requests</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">Real-time tracking from technician dispatch to final job completion.</p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <a href="#services-catalog" class="fx-btn fx-btn-outline fx-btn-sm">
+            <i class="fa-solid fa-plus"></i> New Service Request
+          </a>
+        </div>
+      </div>
+
+      <div id="activeBookingsList">
+        <!-- Rendered dynamically by user.js -->
+      </div>
+    </section>
+
+    <!-- EXPLORE SERVICES CATALOG -->
+    <section id="services-catalog" style="margin-bottom: 50px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+        <div>
+          <span class="fx-badge fx-badge-purple">Verified Catalog</span>
+          <h2 style="font-size: 1.8rem; font-weight: 800; margin-top: 6px;">Available Household Services</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">Select your required task to view pricing and certified specialists.</p>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="category-filter-bar" id="categoryFilters">
+        <button class="cat-pill active" data-cat="all"><i class="fa-solid fa-layer-group"></i> All Services</button>
+        <button class="cat-pill" data-cat="Electrical"><i class="fa-solid fa-bolt"></i> Electrical</button>
+        <button class="cat-pill" data-cat="Plumbing"><i class="fa-solid fa-faucet-drip"></i> Plumbing</button>
+        <button class="cat-pill" data-cat="Cleaning"><i class="fa-solid fa-broom"></i> Deep Cleaning</button>
+        <button class="cat-pill" data-cat="Appliance Repair"><i class="fa-solid fa-snowflake"></i> AC & Appliances</button>
+        <button class="cat-pill" data-cat="Carpentry"><i class="fa-solid fa-hammer"></i> Carpentry</button>
+        <button class="cat-pill" data-cat="Painting"><i class="fa-solid fa-paint-roller"></i> Painting</button>
+      </div>
+
+      <!-- Services Grid -->
+      <div class="service-cards-grid" id="servicesGrid">
+        <!-- Injected dynamically by user.js -->
+      </div>
+    </section>
+
+    <!-- INTERACTIVE ESTIMATOR WIDGET -->
+    <section class="estimator-card" id="estimator-section">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 36px; align-items: center;">
+        <div>
+          <span class="fx-badge fx-badge-green"><i class="fa-solid fa-calculator"></i> Transparent Pricing Engine</span>
+          <h2 style="font-size: 2.1rem; font-weight: 800; margin: 12px 0 10px 0; color: #064e3b;">
+            Calculate Your Estimated Cost Instantly
+          </h2>
+          <p style="color: #065f46; font-size: 1rem; margin-bottom: 24px;">
+            No hidden surge pricing. Adjust the sliders to match your home specifications and get an upfront fair estimate.
+          </p>
+
+          <div class="fx-form-group">
+            <label class="fx-label">Service Type</label>
+            <select class="fx-select" id="estCategory">
+              <option value="449" data-service-id="srv-elec">Electrical Repairs & Wiring (Base ₹449)</option>
+              <option value="399" data-service-id="srv-plumb">Plumbing & Leak Repairs (Base ₹399)</option>
+              <option value="699" data-service-id="srv-clean">Deep Home Cleaning (Base ₹699)</option>
+              <option value="599" data-service-id="srv-ac">AC Servicing & Gas Diagnostic (Base ₹599)</option>
+              <option value="499" data-service-id="srv-carp">Carpentry & Assembly (Base ₹499)</option>
+              <option value="899" data-service-id="srv-paint">Waterproof Painting (Base ₹899)</option>
+            </select>
+          </div>
+
+          <div class="fx-form-group">
+            <div style="display: flex; justify-content: space-between;">
+              <label class="fx-label">Scope / Room / Unit Count</label>
+              <strong style="color: var(--primary);" id="estQuantityVal">1</strong>
+            </div>
+            <input type="range" class="fx-input" id="estQuantity" min="1" max="10" value="1" style="padding: 6px 0; cursor: pointer;">
+          </div>
+
+          <div class="fx-form-group">
+            <label class="fx-label">Urgency & Speed</label>
+            <select class="fx-select" id="estUrgency">
+              <option value="1.0">Standard Scheduled Slot (No Surge)</option>
+              <option value="1.15">Same Day Priority (+15%)</option>
+              <option value="1.35">⚡ Emergency 60-Min Quick Dispatch (+35%)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="estimator-output">
+          <div style="font-size: 0.88rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
+            Total Estimated Cost (Incl. GST & Insurance)
+          </div>
+          <div class="estimator-output-val" id="estResult">₹471</div>
+          <p style="font-size: 0.88rem; color: #047857; margin-bottom: 20px;">
+            <i class="fa-solid fa-circle-check"></i> Fixup 100% Cashless & Refund Protected Guarantee
+          </p>
+          <button class="fx-btn fx-btn-success fx-btn-lg w-100" id="estBookBtn" style="width: 100%;">
+            <i class="fa-solid fa-arrow-right"></i> Book With This Estimate
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEASONAL CARE & MAINTENANCE REMINDERS -->
+    <section style="margin-bottom: 50px;">
+      <div style="margin-bottom: 20px;">
+        <span class="fx-badge fx-badge-amber">Proactive Care</span>
+        <h2 style="font-size: 1.8rem; font-weight: 800; margin-top: 6px;">Home Maintenance Reminders</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Prevent major household breakdowns with timely periodic tune-ups.</p>
+      </div>
+
+      <div class="reminders-grid">
+        <div class="reminder-card">
+          <div class="reminder-icon-box" style="background: #e0f2fe; color: #0369a1;">
+            <i class="fa-solid fa-snowflake"></i>
+          </div>
+          <div style="flex: 1;">
+            <h4 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 4px;">AC Pre-Season Clean</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">Recommended every 4 months to prevent compressor burnouts.</p>
+            <button class="fx-btn fx-btn-outline fx-btn-sm" onclick="scheduleServiceReminder('srv-ac')">Schedule Now</button>
+          </div>
+        </div>
+
+        <div class="reminder-card">
+          <div class="reminder-icon-box" style="background: #fef3c7; color: #b45309;">
+            <i class="fa-solid fa-bolt-lightning"></i>
+          </div>
+          <div style="flex: 1;">
+            <h4 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 4px;">MCB & Earthing Test</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">Prevent electrical shock hazards and voltage fluctuations.</p>
+            <button class="fx-btn fx-btn-outline fx-btn-sm" onclick="scheduleServiceReminder('srv-elec')">Schedule Now</button>
+          </div>
+        </div>
+
+        <div class="reminder-card">
+          <div class="reminder-icon-box" style="background: #d1fae5; color: #047857;">
+            <i class="fa-solid fa-faucet"></i>
+          </div>
+          <div style="flex: 1;">
+            <h4 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 4px;">Overhead Tank Sanitization</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">Keep your family safe from sediment and algae bacteria.</p>
+            <button class="fx-btn fx-btn-outline fx-btn-sm" onclick="scheduleServiceReminder('srv-plumb')">Schedule Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUSTOMER REVIEWS & TRUST -->
+    <section style="background: white; border-radius: var(--radius-xl); border: 1px solid var(--border); padding: 36px; margin-bottom: 50px;">
+      <div style="text-align: center; max-width: 650px; margin: 0 auto 36px auto;">
+        <span class="fx-badge fx-badge-blue">Homeowner Reviews</span>
+        <h2 style="font-size: 2rem; font-weight: 800; margin-top: 8px;">Loved by 15,000+ Indian Households</h2>
+        <p style="color: var(--text-muted);">See why families across Delhi NCR trust Fixup for every small and big repair.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+        <div style="background: #f8fafc; border-radius: var(--radius-lg); padding: 24px; border: 1px solid var(--border);">
+          <div style="color: #f59e0b; margin-bottom: 12px; font-size: 0.95rem;">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p style="font-size: 0.94rem; color: var(--text-secondary); margin-bottom: 16px; font-style: italic;">
+            "Had a midnight electrical MCB trip during a thunderstorm. Rajesh Sharma reached within 25 minutes, diagnosed the water seepage in the conduit, and fixed it safely. Incredible service!"
+          </p>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover;" alt="Priya Verma">
+            <div>
+              <div style="font-weight: 800; font-size: 0.94rem;">Priya Verma</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">Lotus Boulevard, Sector 100, Noida</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: #f8fafc; border-radius: var(--radius-lg); padding: 24px; border: 1px solid var(--border);">
+          <div style="color: #f59e0b; margin-bottom: 12px; font-size: 0.95rem;">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p style="font-size: 0.94rem; color: var(--text-secondary); margin-bottom: 16px; font-style: italic;">
+            "No bargaining, no surprise bills. Vikram the plumber came equipped with a pipe camera, unclogged our kitchen pipeline in 40 minutes, and cleaned the floor before leaving."
+          </p>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover;" alt="Aman Mehra">
+            <div>
+              <div style="font-weight: 800; font-size: 0.94rem;">Aman Mehra</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">Indirapuram, Ghaziabad</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: #f8fafc; border-radius: var(--radius-lg); padding: 24px; border: 1px solid var(--border);">
+          <div style="color: #f59e0b; margin-bottom: 12px; font-size: 0.95rem;">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p style="font-size: 0.94rem; color: var(--text-secondary); margin-bottom: 16px; font-style: italic;">
+            "Sunita's cleaning team did an immaculate job on our 3BHK before Diwali. Every corner of the kitchen and bathroom was shining like brand new. Highly recommended!"
+          </p>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover;" alt="Kavita Sengupta">
+            <div>
+              <div style="font-weight: 800; font-size: 0.94rem;">Kavita Sengupta</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">Defence Colony, New Delhi</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BOOKING WIZARD MODAL -->
+  <div class="fx-modal-backdrop hidden" id="bookingModal">
+    <div class="fx-modal-box">
+      <div class="fx-modal-header">
+        <div>
+          <span class="fx-badge fx-badge-blue">Step-by-Step Scheduling</span>
+          <h3 class="fx-modal-title" id="modalServiceName">Service Name</h3>
+        </div>
+        <button class="fx-modal-close" id="modalCloseBtn">&times;</button>
+      </div>
+
+      <form id="bookingForm">
+        <!-- Addons checklist -->
+        <div style="margin-bottom: 20px;">
+          <label class="fx-label">Select Recommended Add-ons & Parts</label>
+          <div id="modalAddonsList">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Date & Time Slot -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px;">
+          <div>
+            <label class="fx-label">Preferred Date</label>
+            <input type="date" class="fx-input" id="modalBookingDate" required>
+          </div>
+          <div>
+            <label class="fx-label">Time Slot</label>
+            <select class="fx-select" id="modalTimeSlot" required>
+              <option value="09:00 AM - 11:00 AM">09:00 AM - 11:00 AM (Morning)</option>
+              <option value="11:00 AM - 01:00 PM">11:00 AM - 01:00 PM</option>
+              <option value="02:00 PM - 04:00 PM">02:00 PM - 04:00 PM (Afternoon)</option>
+              <option value="04:00 PM - 06:00 PM">04:00 PM - 06:00 PM (Evening)</option>
+              <option value="06:00 PM - 08:00 PM">06:00 PM - 08:00 PM (Late Slot)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Emergency Toggle -->
+        <div style="background: #fff1f2; border: 1.5px dashed #f43f5e; padding: 12px 16px; border-radius: var(--radius-md); margin-bottom: 20px;">
+          <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+            <input type="checkbox" id="modalEmergencyCheck" style="width: 18px; height: 18px; accent-color: #e11d48;">
+            <div>
+              <strong style="color: #be123c; font-size: 0.94rem;">Require Immediate Emergency Dispatch? (+₹250)</strong>
+              <div style="font-size: 0.8rem; color: #9f1239;">Nearest verified technician arrives within 45–60 minutes.</div>
+            </div>
+          </label>
+        </div>
+
+        <!-- Contact & Address -->
+        <div style="margin-bottom: 16px;">
+          <label class="fx-label">Your Full Name</label>
+          <input type="text" class="fx-input" id="modalCustomerName" placeholder="e.g., Rohit Sharma" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+          <div>
+            <label class="fx-label">Contact Phone Number</label>
+            <input type="tel" class="fx-input" id="modalCustomerPhone" placeholder="10-digit mobile number" pattern="[0-9+ -]{10,14}" required>
+          </div>
+          <div>
+            <label class="fx-label">House / Flat & Society</label>
+            <input type="text" class="fx-input" id="modalCustomerAddress" placeholder="e.g., Flat 504, Tower B, Sector 62" required>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <label class="fx-label">Special Problem Details / Notes</label>
+          <textarea class="fx-textarea" id="modalNotes" rows="2" placeholder="Briefly describe the issue (e.g. leaking faucet, main switch tripping)..."></textarea>
+        </div>
+
+        <!-- Cost Breakdown Summary -->
+        <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 20px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 6px;">
+            <span style="color: var(--text-muted);">Base Service Charge</span>
+            <strong id="modalBasePrice">₹0</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 6px;">
+            <span style="color: var(--text-muted);">Subtotal (Base + Addons + Emergency)</span>
+            <strong id="modalSubtotalText">₹0</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 10px;">
+            <span style="color: var(--text-muted);">Platform Trust & GST (5%)</span>
+            <strong id="modalTaxText">₹0</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 1.25rem; font-weight: 900; border-top: 1px solid var(--border); padding-top: 10px; color: var(--primary);">
+            <span>Payable Amount</span>
+            <span id="modalTotalText">₹0</span>
+          </div>
+        </div>
+
+        <button type="submit" class="fx-btn fx-btn-primary fx-btn-lg" style="width: 100%;">
+          <i class="fa-solid fa-lock"></i> Confirm & Schedule Fixup Request
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Shared Scripts & Module Logic -->
+  <script src="../shared/shared.js"></script>
+  <script src="user.js"></script>
+</body>
+</html>

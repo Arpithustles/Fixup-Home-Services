@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Provider Registration — Fixup Partner Network</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/themes.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/navbar.css">
+  <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body>
+
+  <div id="navbar-mount"></div>
+
+  <main class="auth-page-wrapper">
+    <div class="auth-card auth-card-wide">
+      <div id="wizardContainer">
+        <div class="auth-header">
+          <div class="auth-logo-badge" style="background: linear-gradient(135deg, #059669 0%, #0d9488 100%);">
+            <i class="fa-solid fa-briefcase"></i>
+          </div>
+          <h1 class="auth-title">Join Fixup Partner Network</h1>
+          <p class="auth-subtitle">Deliver verified home services, earn 85% net split, and receive instant daily UPI payouts</p>
+        </div>
+
+        <!-- 5-Step Wizard Indicator -->
+        <div class="wizard-steps-indicator">
+          <div class="wizard-progress-line" id="wizardProgressLine" style="width: 0%;"></div>
+          <div class="wizard-step-node active" data-step="1">
+            <div class="node-circle">1</div>
+            <span class="node-title">Personal</span>
+          </div>
+          <div class="wizard-step-node" data-step="2">
+            <div class="node-circle">2</div>
+            <span class="node-title">Address</span>
+          </div>
+          <div class="wizard-step-node" data-step="3">
+            <div class="node-circle">3</div>
+            <span class="node-title">Skills</span>
+          </div>
+          <div class="wizard-step-node" data-step="4">
+            <div class="node-circle">4</div>
+            <span class="node-title">KYC</span>
+          </div>
+          <div class="wizard-step-node" data-step="5">
+            <div class="node-circle">5</div>
+            <span class="node-title">Review</span>
+          </div>
+        </div>
+
+        <!-- Step 1: Personal Information -->
+        <div class="wizard-step-pane active" id="paneStep1">
+          <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 20px;">Step 1: Personal Details</h3>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label form-label-required">Full Legal Name</label>
+              <input type="text" id="proName" class="form-control-fixup" placeholder="As per Aadhaar Card" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label form-label-required">Date of Birth</label>
+              <input type="date" id="proDob" class="form-control-fixup" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label">Gender (Optional)</label>
+              <select id="proGender" class="form-select-fixup">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label form-label-required">Primary Mobile Number</label>
+              <input type="tel" id="proPhone" class="form-control-fixup" placeholder="10-digit number" pattern="[0-9]{10}" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label">Alternative Emergency Phone</label>
+              <input type="tel" id="proAltPhone" class="form-control-fixup" placeholder="Alternative contact number">
+            </div>
+            <div class="form-group">
+              <label class="form-label form-label-required">Email Address</label>
+              <input type="email" id="proEmail" class="form-control-fixup" placeholder="official@email.com" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label form-label-required">Desired Username</label>
+              <input type="text" id="proUsername" class="form-control-fixup" placeholder="e.g. rajesh_pro" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label form-label-required">Account Password</label>
+              <input type="password" id="proPassword" class="form-control-fixup" placeholder="Minimum 6 characters" minlength="6" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label form-label-required">Confirm Password</label>
+            <input type="password" id="proConfirmPassword" class="form-control-fixup" placeholder="Re-enter password" required>
+          </div>
+
+          <button type="button" class="btn-fixup btn-primary-fixup btn-lg" id="btnStep1Next" style="width: 100%;">
+            Next: Address Information <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+        <!-- Step 2: Address Information -->
+        <div class="wizard-step-pane" id="paneStep2">
+          <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 20px;">Step 2: Service Location & Address</h3>
+
+          <div class="form-group">
+            <label class="form-label form-label-required">House / Flat & Street Name</label>
+            <input type="text" id="proFullAddress" class="form-control-fixup" placeholder="e.g. Shop 4, Sector 62 Main Market" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label form-label-required">City / Region</label>
+              <input type="text" id="proCity" class="form-control-fixup" placeholder="e.g. Noida / Greater Noida" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label form-label-required">State</label>
+              <input type="text" id="proState" class="form-control-fixup" placeholder="e.g. Uttar Pradesh" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label form-label-required">Pincode</label>
+            <input type="text" id="proPincode" class="form-control-fixup" placeholder="6-digit pincode" pattern="[0-9]{6}" required>
+          </div>
+
+          <div style="display: flex; gap: 12px;">
+            <button type="button" class="btn-fixup btn-secondary-fixup btn-lg" id="btnStep2Prev" style="flex: 1;">
+              <i class="fa-solid fa-arrow-left"></i> Previous
+            </button>
+            <button type="button" class="btn-fixup btn-primary-fixup btn-lg" id="btnStep2Next" style="flex: 2;">
+              Next: Professional Trade <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Professional Information -->
+        <div class="wizard-step-pane" id="paneStep3">
+          <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 20px;">Step 3: Trade & Experience</h3>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label form-label-required">Primary Service Category</label>
+              <select id="proCategory" class="form-select-fixup" required>
+                <option value="Electrical">Electrician & Wireman</option>
+                <option value="Plumbing">Plumbing & Hydro Systems</option>
+                <option value="AC Repair">AC & Refrigeration Technician</option>
+                <option value="Cleaning">Deep Cleaning & Sanitization</option>
+                <option value="Carpentry">Carpentry & Modular Assembly</option>
+                <option value="Painting">Painting & Damp Sealing</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Secondary Trade Category (Optional)</label>
+              <select id="proSecondaryCategory" class="form-select-fixup">
+                <option value="">None</option>
+                <option value="Appliance Repair">Appliance Repair</option>
+                <option value="Electrical">Electrical</option>
+                <option value="Plumbing">Plumbing</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label form-label-required">Years of Experience</label>
+              <input type="number" id="proExp" class="form-control-fixup" min="1" max="45" value="5" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label form-label-required">Expected Standard Visiting Fee</label>
+              <input type="text" id="proCharges" class="form-control-fixup" placeholder="e.g. ₹399 - ₹499" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label form-label-required">Service Neighborhoods / Areas Covered</label>
+            <input type="text" id="proAreas" class="form-control-fixup" placeholder="e.g. Sector 18, 62, Indirapuram, Vaishali" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Service Description & Trade Equipment</label>
+            <textarea id="proDesc" class="form-textarea-fixup" rows="3" placeholder="Describe your tools (e.g. pressure pumps, digital multimeter, cordless drills)..."></textarea>
+          </div>
+
+          <div style="display: flex; gap: 12px;">
+            <button type="button" class="btn-fixup btn-secondary-fixup btn-lg" id="btnStep3Prev" style="flex: 1;">
+              <i class="fa-solid fa-arrow-left"></i> Previous
+            </button>
+            <button type="button" class="btn-fixup btn-primary-fixup btn-lg" id="btnStep3Next" style="flex: 2;">
+              Next: KYC Verification <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 4: KYC Information -->
+        <div class="wizard-step-pane" id="paneStep4">
+          <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 20px;">Step 4: Government KYC Documents</h3>
+
+          <div class="form-group">
+            <label class="form-label form-label-required">Government ID Type</label>
+            <select id="proIdType" class="form-select-fixup" required>
+              <option value="Aadhaar Card">Aadhaar Card (UIDAI)</option>
+              <option value="PAN Card">PAN Card</option>
+              <option value="Voter ID">Voter Identity Card</option>
+              <option value="Driving License">Driving License</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label form-label-required">Government ID Number</label>
+            <input type="text" id="proIdNumber" class="form-control-fixup" placeholder="Enter corresponding document number" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label form-label-required">Document Upload (Front & Back)</label>
+            <input type="file" class="form-control-fixup" accept="image/*,.pdf">
+            <span class="form-help">Scanned copy or clear smartphone photograph. Protected by SSL encryption.</span>
+          </div>
+
+          <div style="background: var(--bg-surface-secondary); padding: 14px 18px; border-radius: var(--radius-md); font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">
+            <i class="fa-solid fa-shield-check text-success"></i> <strong>Mandatory 15-Day Recertification:</strong> Fixup runs ongoing identity & police audits every 15 days to guarantee household safety.
+          </div>
+
+          <div style="display: flex; gap: 12px;">
+            <button type="button" class="btn-fixup btn-secondary-fixup btn-lg" id="btnStep4Prev" style="flex: 1;">
+              <i class="fa-solid fa-arrow-left"></i> Previous
+            </button>
+            <button type="button" class="btn-fixup btn-primary-fixup btn-lg" id="btnStep4Next" style="flex: 2;">
+              Next: Review & Submit <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 5: Review & Submit -->
+        <div class="wizard-step-pane" id="paneStep5">
+          <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 16px;">Step 5: Review Application Details</h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 20px;">
+            Please check your submitted information before final verification dispatch.
+          </p>
+
+          <div class="review-data-card">
+            <div class="review-row">
+              <span class="review-label">Full Name:</span>
+              <span class="review-val" id="revName"></span>
+            </div>
+            <div class="review-row">
+              <span class="review-label">Contact:</span>
+              <span class="review-val" id="revContact"></span>
+            </div>
+            <div class="review-row">
+              <span class="review-label">Service Category:</span>
+              <span class="review-val" id="revCategory"></span>
+            </div>
+            <div class="review-row">
+              <span class="review-label">Address:</span>
+              <span class="review-val" id="revAddress"></span>
+            </div>
+            <div class="review-row">
+              <span class="review-label">KYC Document:</span>
+              <span class="review-val" id="revKyc"></span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 12px;">
+            <button type="button" class="btn-fixup btn-secondary-fixup btn-lg" id="btnStep5Prev" style="flex: 1;">
+              <i class="fa-solid fa-pen-to-square"></i> Edit
+            </button>
+            <button type="button" class="btn-fixup btn-success btn-lg" id="btnStep5Submit" style="flex: 2; background: var(--success); color: white;">
+              <i class="fa-solid fa-paper-plane"></i> Verify via Email OTP
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Provider OTP Verification Screen -->
+      <div id="proOtpSection" style="display: none; text-align: center;">
+        <div class="auth-header">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--success-light); color: var(--success); display: grid; place-items: center; font-size: 1.6rem; margin: 0 auto 16px auto;">
+            <i class="fa-solid fa-envelope-open-text"></i>
+          </div>
+          <h2 class="auth-title">Verify Provider Email</h2>
+          <p class="auth-subtitle">
+            Enter the 6-digit verification code sent to <strong id="otpTargetEmail" style="color: var(--text-primary);"></strong>
+          </p>
+        </div>
+
+        <div class="otp-container">
+          <input type="text" class="otp-digit-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+          <input type="text" class="otp-digit-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+          <input type="text" class="otp-digit-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+          <input type="text" class="otp-digit-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+          <input type="text" class="otp-digit-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+          <input type="text" class="otp-digit-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+        </div>
+
+        <button type="button" class="btn-fixup btn-primary-fixup btn-lg" id="btnVerifyOtp" style="width: 100%; margin-bottom: 14px;">
+          <i class="fa-solid fa-circle-check"></i> Complete Verification & Submit for Admin Review
+        </button>
+
+        <button type="button" class="btn-fixup btn-outline-fixup btn-sm" id="btnResendOtp">
+          <i class="fa-solid fa-arrow-rotate-right"></i> Resend Verification Code
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="../js/theme.js"></script>
+  <script src="../js/store.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      window.initProviderRegistration();
+    });
+  </script>
+</body>
+</html>

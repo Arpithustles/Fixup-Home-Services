@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Provider Dashboard — Fixup Partner Desk</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/themes.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/navbar.css">
+  <link rel="stylesheet" href="../css/provider.css">
+</head>
+<body>
+
+  <div id="navbar-mount"></div>
+
+  <main class="provider-layout">
+    <div class="container-custom">
+      <!-- Provider Header -->
+      <div class="provider-header-card">
+        <div style="display: flex; align-items: center; gap: 20px;">
+          <div class="provider-avatar-box" id="proAvatarInitials">RS</div>
+          <div>
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+              <span class="badge-fixup badge-success"><i class="fa-solid fa-shield-check"></i> Fixup Verified Pro</span>
+              <div class="kyc-countdown-badge" id="kycCountdownBadge">
+                <i class="fa-solid fa-clock"></i> Next KYC In: 12d 08h 14m 20s
+              </div>
+            </div>
+            <h1 style="font-size: 2rem; font-weight: 900; margin: 6px 0 2px 0;">
+              Welcome back, <span id="proWelcomeName">Rajesh</span>!
+            </h1>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">
+              Manage your daily household job leads, track 85% net earnings, and withdraw payouts.
+            </p>
+          </div>
+        </div>
+
+        <!-- Duty Switch & Payout Action -->
+        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+          <div class="duty-switch-pill">
+            <div class="pulse-dot" id="proDutyPulse"></div>
+            <span style="font-size: 0.88rem; font-weight: 700;" id="proDutyLabel">Online (Accepting Jobs)</span>
+            <label class="switch-toggle-btn">
+              <input type="checkbox" id="proDutyToggle" checked>
+              <span class="switch-slider"></span>
+            </label>
+          </div>
+
+          <button class="btn-fixup btn-primary-fixup btn-sm" id="btnRequestPayout">
+            <i class="fa-solid fa-money-bill-transfer"></i> Instant UPI Payout
+          </button>
+        </div>
+      </div>
+
+      <!-- 9 Overview Statistic Cards -->
+      <div class="provider-stats-grid">
+        <div class="pro-stat-card">
+          <div class="pro-stat-val" style="color: var(--success);" id="kpiTotalEarnings">₹1,84,500</div>
+          <div class="pro-stat-label">Total Net Earnings</div>
+        </div>
+        <div class="pro-stat-card">
+          <div class="pro-stat-val" style="color: var(--primary);" id="kpiEarnings7Days">₹8,650</div>
+          <div class="pro-stat-label">Last 7 Days</div>
+        </div>
+        <div class="pro-stat-card">
+          <div class="pro-stat-val" id="kpiEarnings30Days">₹34,200</div>
+          <div class="pro-stat-label">Last 30 Days</div>
+        </div>
+        <div class="pro-stat-card">
+          <div class="pro-stat-val" id="kpiEarnings6Months">₹1,72,000</div>
+          <div class="pro-stat-label">Last 6 Months</div>
+        </div>
+        <div class="pro-stat-card">
+          <div class="pro-stat-val" style="color: var(--success);" id="kpiCompletedJobs">412</div>
+          <div class="pro-stat-label">Completed Jobs</div>
+        </div>
+        <div class="pro-stat-card">
+          <div class="pro-stat-val" style="color: var(--warning);" id="kpiPendingJobs">2</div>
+          <div class="pro-stat-label">Pending Requests</div>
+        </div>
+        <div class="pro-stat-card">
+          <div class="pro-stat-val" style="color: var(--primary);" id="kpiAssignedJobs">1</div>
+          <div class="pro-stat-label">Assigned Work</div>
+        </div>
+        <div class="pro-stat-card">
+          <div class="pro-stat-val" style="color: var(--accent);" id="kpiAvgRating">4.94 ★</div>
+          <div class="pro-stat-label">Avg Customer Rating</div>
+        </div>
+        <div class="pro-stat-card">
+          <div class="pro-stat-val" style="color: #8b5cf6;" id="kpiFeedbackPoints">980</div>
+          <div class="pro-stat-label">Quality Points</div>
+        </div>
+      </div>
+
+      <!-- Interactive Earnings Analytics Chart -->
+      <div class="chart-card-wrapper">
+        <div class="chart-header-row">
+          <div>
+            <h3 style="font-size: 1.35rem; font-weight: 800; margin: 0 0 4px 0;">Earnings & Performance Trends</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0;">Interactive earnings overview (85% net split credited directly to your wallet)</p>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="chart-filter-btn" data-range="daily">Daily</button>
+            <button class="chart-filter-btn active" data-range="weekly">Weekly</button>
+            <button class="chart-filter-btn" data-range="monthly">Monthly</button>
+            <button class="chart-filter-btn" data-range="sixMonths">Last 6 Months</button>
+          </div>
+        </div>
+        <div class="canvas-container">
+          <canvas id="providerEarningsCanvas"></canvas>
+        </div>
+      </div>
+
+      <!-- Active Assigned Work Section -->
+      <div style="margin-bottom: 40px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <div>
+            <h2 style="font-size: 1.5rem; font-weight: 800;">Assigned Work Execution Desk</h2>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin: 0;">Update real-time work stages to keep the customer informed and unlock your payout.</p>
+          </div>
+        </div>
+
+        <div id="assignedJobsContainer">
+          <!-- Populated dynamically by provider.js -->
+        </div>
+      </div>
+
+      <!-- Top 5 Loyal Customers Section -->
+      <div class="card-fixup" style="margin-bottom: 40px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <div>
+            <span class="badge-fixup badge-primary">Repeat Business</span>
+            <h3 style="font-size: 1.35rem; font-weight: 800; margin-top: 6px;">Top 5 Loyal Customers</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0;">Households that consistently book your services.</p>
+          </div>
+        </div>
+
+        <div class="loyal-customer-grid" id="loyalCustomersContainer">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Feedback & Ratings -->
+      <div class="card-fixup">
+        <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 16px;">Recent Customer Feedback & Reviews</h3>
+        <div id="providerReviewsList">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="../js/theme.js"></script>
+  <script src="../js/store.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/provider.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      window.initProviderDashboard();
+    });
+  </script>
+</body>
+</html>

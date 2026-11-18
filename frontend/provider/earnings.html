@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Earnings & Payouts — Fixup Provider Desk</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/themes.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/navbar.css">
+  <link rel="stylesheet" href="../css/provider.css">
+</head>
+<body>
+
+  <div id="navbar-mount"></div>
+
+  <main class="provider-layout">
+    <div class="container-custom">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; flex-wrap: wrap; gap: 16px;">
+        <div>
+          <h1 style="font-size: 2.2rem; font-weight: 900;">Earnings, Payouts & Tariffs</h1>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin: 4px 0 0 0;">
+            85% net split credited directly with zero processing deductions.
+          </p>
+        </div>
+      </div>
+
+      <!-- Payout Card -->
+      <div class="card-fixup" style="background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-surface-secondary) 100%); border: 2px solid var(--border-color); padding: 32px; margin-bottom: 36px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+        <div>
+          <span class="badge-fixup badge-success">Instant Daily Settlement</span>
+          <h3 style="font-size: 1.6rem; font-weight: 900; margin: 8px 0 4px 0;">Available Payout Balance</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">Verified Bank/UPI: <strong id="proUpiDisplay">rajesh.sharma@okaxis</strong></p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+          <div style="font-size: 2.4rem; font-weight: 900; color: var(--success);" id="proTodayEarnDisplay">₹1,850</div>
+          <button class="btn-fixup btn-primary-fixup btn-lg" id="btnWithdrawNow" style="background: var(--success); border-color: var(--success);">
+            <i class="fa-solid fa-money-bill-transfer"></i> Withdraw via Instant UPI
+          </button>
+        </div>
+      </div>
+
+      <!-- Historical Ledger Table -->
+      <div class="card-fixup">
+        <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 16px;">Service Payout Ledger</h3>
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.92rem;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--border-color); text-align: left;">
+                <th style="padding: 12px 16px; color: var(--text-muted); text-transform: uppercase; font-size: 0.78rem;">Order ID</th>
+                <th style="padding: 12px 16px; color: var(--text-muted); text-transform: uppercase; font-size: 0.78rem;">Service Task</th>
+                <th style="padding: 12px 16px; color: var(--text-muted); text-transform: uppercase; font-size: 0.78rem;">Customer</th>
+                <th style="padding: 12px 16px; color: var(--text-muted); text-transform: uppercase; font-size: 0.78rem;">Status</th>
+                <th style="padding: 12px 16px; color: var(--text-muted); text-transform: uppercase; font-size: 0.78rem; text-align: right;">Net Credited</th>
+              </tr>
+            </thead>
+            <tbody id="payoutHistoryMount">
+              <!-- Populated dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="../js/theme.js"></script>
+  <script src="../js/store.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const session = window.FixupStore.getSession();
+      if (!session || session.role !== 'SERVICE_PROVIDER') {
+        window.location.href = '../pages/login.html';
+        return;
+      }
+
+      const pro = window.FixupStore.getProviderById(session.userId) || window.FixupStore.getProviders()[0];
+      const upiDisplay = document.getElementById('proUpiDisplay');
+      const earnDisplay = document.getElementById('proTodayEarnDisplay');
+      const tableMount = document.getElementById('payoutHistoryMount');
+
+      if (upiDisplay) upiDisplay.textContent = pro.payoutDetails?.upiId || 'provider@upi';
+      if (earnDisplay) earnDisplay.textContent = `₹${(pro.earnings?.today || 1850).toLocaleString('en-IN')}`;
+
+      // Render completed bookings for this pro
+      const bookings = window.FixupStore.getBookingsForProvider(pro.id).filter(b => b.status === 'completed');
+      if (tableMount) {
+        if (bookings.length === 0) {
+          tableMount.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 24px; color: var(--text-muted);">No completed payouts in current session.</td></tr>';
+        } else {
+          tableMount.innerHTML = bookings.map(b => `
+            <tr style="border-bottom: 1px solid var(--border-color);">
+              <td style="padding: 14px 16px;"><strong>${b.id}</strong></td>
+              <td style="padding: 14px 16px;">${b.serviceName}</td>
+              <td style="padding: 14px 16px;">${b.customerName}</td>
+              <td style="padding: 14px 16px;"><span class="badge-fixup badge-success">Settled</span></td>
+              <td style="padding: 14px 16px; text-align: right; font-weight: 800; color: var(--success);">+₹${Math.round(b.totalAmount * 0.85)}</td>
+            </tr>
+          `).join('');
+        }
+      }
+
+      document.getElementById('btnWithdrawNow')?.addEventListener('click', () => {
+        if (!pro.earnings?.today || pro.earnings.today <= 0) {
+          window.FixupToast.show('Zero Balance', 'No daily earnings currently pending for payout.', 'warning');
+          return;
+        }
+        const amt = pro.earnings.today;
+        pro.earnings.today = 0;
+        window.FixupStore.save();
+        if (earnDisplay) earnDisplay.textContent = '₹0';
+        window.FixupToast.show('Instant UPI Payout Complete', `Transferred ₹${amt} to ${pro.payoutDetails?.upiId || 'provider@upi'}`, 'success', 6000);
+      });
+    });
+  </script>
+</body>
+</html>

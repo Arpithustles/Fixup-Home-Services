@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Reviews & Feedback — Fixup</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/themes.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/navbar.css">
+  <link rel="stylesheet" href="../css/home.css">
+</head>
+<body>
+
+  <div id="navbar-mount"></div>
+
+  <main style="padding: 60px 0 90px 0;">
+    <div class="container-custom">
+      <div class="section-header">
+        <span class="section-badge">Verified Testimonials</span>
+        <h1 class="section-title">Homeowner Reviews & Service Ratings</h1>
+        <p class="section-subtitle">
+          Over 15,400 completed services across Delhi NCR, Gurugram, Noida, and Bengaluru.
+        </p>
+      </div>
+
+      <!-- Rating Summary Card -->
+      <div class="card-fixup" style="display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; gap: 24px; padding: 36px; margin-bottom: 48px; border: 1.5px solid var(--border-color);">
+        <div style="text-align: center;">
+          <div style="font-size: 3.5rem; font-weight: 900; color: var(--primary); line-height: 1;">4.94</div>
+          <div style="color: var(--accent); font-size: 1.2rem; margin: 8px 0 4px 0;">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">Based on 2,140 Verified Customer Reviews</span>
+        </div>
+
+        <div style="flex: 1; max-width: 420px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 0.85rem;">
+            <span>5 Star</span>
+            <div style="flex: 1; height: 8px; background: var(--bg-surface-secondary); border-radius: 4px; overflow: hidden;">
+              <div style="width: 94%; height: 100%; background: var(--primary);"></div>
+            </div>
+            <span>94%</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 0.85rem;">
+            <span>4 Star</span>
+            <div style="flex: 1; height: 8px; background: var(--bg-surface-secondary); border-radius: 4px; overflow: hidden;">
+              <div style="width: 5%; height: 100%; background: var(--primary);"></div>
+            </div>
+            <span>5%</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; font-size: 0.85rem;">
+            <span>3 Star</span>
+            <div style="flex: 1; height: 8px; background: var(--bg-surface-secondary); border-radius: 4px; overflow: hidden;">
+              <div style="width: 1%; height: 100%; background: var(--primary);"></div>
+            </div>
+            <span>1%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reviews Grid -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px;" id="reviewsListMount">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="../js/theme.js"></script>
+  <script src="../js/store.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const mount = document.getElementById('reviewsListMount');
+      const reviews = window.FixupStore.data.reviews || [];
+
+      // Combine with extra customer reviews
+      const allReviews = [
+        ...reviews,
+        {
+          authorName: 'Dr. Sameer Kapoor',
+          location: 'Cyber City, Gurugram',
+          rating: 5,
+          serviceName: 'AC PCB Inverter Repair',
+          date: '3 weeks ago',
+          content: 'Our inverter AC stopped cooling on a Sunday night. Amit Patel diagnosed a blown capacitor, replaced it with an OEM component, and tested the cooling cycle thoroughly.'
+        },
+        {
+          authorName: 'Mrs. Neha Bansal',
+          location: 'Indirapuram, Ghaziabad',
+          rating: 5,
+          serviceName: 'Carpentry & Door Lock Fitting',
+          date: '1 month ago',
+          content: 'Mohammad Farooq arrived right on time with professional cordless drilling equipment. Fitted two heavy Godrej rim locks cleanly with zero damage to the wood.'
+        },
+        {
+          authorName: 'Vikrant Roy',
+          location: 'Whitefield, Bengaluru',
+          rating: 5,
+          serviceName: 'Water Motor Pump Overhaul',
+          date: '1 month ago',
+          content: 'Our overhead tank water pump was causing continuous circuit trips. Vikram replaced the internal seal and capacitor. Clear invoice with tax and warranty.'
+        }
+      ];
+
+      mount.innerHTML = allReviews.map(r => `
+        <div class="testimonial-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <div class="testimonial-rating">
+              ${'<i class="fa-solid fa-star"></i>'.repeat(r.rating)}
+            </div>
+            <span class="badge-fixup badge-success"><i class="fa-solid fa-shield-check"></i> Verified Hire</span>
+          </div>
+          <p class="testimonial-quote">"${r.content}"</p>
+          <div class="testimonial-author">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary-light); color: var(--primary); display: grid; place-items: center; font-weight: 800; font-size: 1rem;">
+              ${r.authorName[0]}
+            </div>
+            <div>
+              <strong style="font-size: 0.95rem; color: var(--text-primary); display: block;">${r.authorName}</strong>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">${r.serviceName} • ${r.location}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    });
+  </script>
+</body>
+</html>

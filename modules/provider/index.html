@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fixup — Service Provider Desk & Earnings Hub</title>
+  
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Shared & Module Stylesheets -->
+  <link rel="stylesheet" href="../shared/shared.css">
+  <link rel="stylesheet" href="provider.css">
+</head>
+<body>
+
+  <!-- PROVIDER HEADER & STATUS BAR -->
+  <header class="pro-header">
+    <div class="pro-header-inner">
+      <div class="pro-profile-summary">
+        <!-- Avatar & Identity -->
+        <div style="display: flex; align-items: center; gap: 20px;">
+          <div class="pro-avatar-wrap">
+            <img src="https://images.unsplash.com/photo-1540569014015-19a7be504e3a?auto=format&fit=crop&w=300&q=80" alt="Provider" id="proAvatarImg" class="pro-avatar-img">
+            <div class="pro-status-indicator online" id="proStatusDot"></div>
+          </div>
+          <div>
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+              <h1 style="font-size: 2rem; font-weight: 900; letter-spacing: -0.5px;" id="proNameText">Rajesh Sharma</h1>
+              <span class="fx-badge fx-badge-green" id="proKycBadge">
+                <i class="fa-solid fa-shield-check"></i> Fixup Verified Pro
+              </span>
+            </div>
+            <p style="color: #a7f3d0; font-size: 0.95rem; font-weight: 600; margin-top: 4px;" id="proCategoryBadge">
+              Master Electrician • 8 Yrs Experience
+            </p>
+          </div>
+        </div>
+
+        <!-- Controls: Profile Switcher & Duty Toggle -->
+        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+          <!-- Switch Active Pro -->
+          <div>
+            <label style="display: block; font-size: 0.75rem; text-transform: uppercase; color: #a7f3d0; font-weight: 800; margin-bottom: 4px;">
+              Switch Testing Account:
+            </label>
+            <select class="fx-select" id="proSelector" style="background: rgba(255, 255, 255, 0.9); font-weight: 700; font-size: 0.88rem; padding: 8px 12px;">
+              <!-- Populated dynamically -->
+            </select>
+          </div>
+
+          <!-- Duty Toggle Switch -->
+          <div class="pro-duty-toggle">
+            <span style="font-size: 0.85rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase;">Duty Mode:</span>
+            <label class="switch-duty">
+              <input type="checkbox" id="dutyToggle" checked>
+              <span class="slider-duty"></span>
+            </label>
+          </div>
+
+          <!-- Register New Pro Button -->
+          <button class="fx-btn fx-btn-outline fx-btn-sm" id="btnOpenProRegister" style="background: white; color: #047857; border: none;">
+            <i class="fa-solid fa-user-plus"></i> Join as Pro
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- KPI OVERVIEW CARDS -->
+  <section class="pro-kpi-grid">
+    <div class="pro-kpi-card">
+      <div class="pro-kpi-icon" style="background: #ecfdf5; color: #059669;">
+        <i class="fa-solid fa-wallet"></i>
+      </div>
+      <div>
+        <div class="pro-kpi-val" id="kpiEarningsToday">₹1,850</div>
+        <div class="pro-kpi-label">Today's Net Earnings</div>
+      </div>
+    </div>
+
+    <div class="pro-kpi-card">
+      <div class="pro-kpi-icon" style="background: #e0f2fe; color: #0284c7;">
+        <i class="fa-solid fa-check-double"></i>
+      </div>
+      <div>
+        <div class="pro-kpi-val" id="kpiCompletedJobs">412</div>
+        <div class="pro-kpi-label">Total Jobs Delivered</div>
+      </div>
+    </div>
+
+    <div class="pro-kpi-card">
+      <div class="pro-kpi-icon" style="background: #fef3c7; color: #d97706;">
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <div>
+        <div class="pro-kpi-val" id="proRatingText">4.94 ★</div>
+        <div class="pro-kpi-label">Customer Rating</div>
+      </div>
+    </div>
+
+    <div class="pro-kpi-card">
+      <div class="pro-kpi-icon" style="background: #ede9fe; color: #7c3aed;">
+        <i class="fa-solid fa-shield-halved"></i>
+      </div>
+      <div>
+        <div class="pro-kpi-val" id="kpiAcceptanceRate">98.5%</div>
+        <div class="pro-kpi-label">Service Reliability Score</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN PROVIDER CONSOLE -->
+  <main style="max-width: 1380px; margin: 0 auto 60px auto; padding: 0 24px;">
+
+    <!-- INCOMING JOB RADAR -->
+    <section class="job-radar-box">
+      <div id="jobRadarContainer">
+        <!-- Rendered dynamically by provider.js -->
+      </div>
+    </section>
+
+    <!-- ACTIVE WORK EXECUTION DESK -->
+    <section style="margin-bottom: 40px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+        <div>
+          <span class="fx-badge fx-badge-blue">Execution Desk</span>
+          <h2 style="font-size: 1.8rem; font-weight: 800; margin-top: 6px;">Active Assigned Tasks</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            Update your step-by-step progress to inform the customer and unlock your payout upon completion.
+          </p>
+        </div>
+      </div>
+
+      <div id="activeJobsContainer">
+        <!-- Rendered dynamically by provider.js -->
+      </div>
+    </section>
+
+    <!-- PAYOUT & EARNINGS CARD -->
+    <section class="payout-card">
+      <div>
+        <span class="fx-badge fx-badge-green" style="background: rgba(16, 185, 129, 0.2); color: #34d399; margin-bottom: 8px;">
+          <i class="fa-solid fa-bolt"></i> Instant Liquidity
+        </span>
+        <h3 style="font-size: 1.7rem; font-weight: 800;">Withdraw Your Daily Earnings Directly</h3>
+        <p style="color: #94a3b8; font-size: 0.95rem; max-width: 650px; margin-top: 4px;">
+          Fixup settles earnings directly to your verified UPI VPA or Bank Account with 0% processing deduction.
+        </p>
+      </div>
+      <div>
+        <button class="fx-btn fx-btn-success fx-btn-lg" onclick="requestInstantPayout()">
+          <i class="fa-solid fa-money-bill-transfer"></i> Withdraw via Instant UPI
+        </button>
+      </div>
+    </section>
+
+    <!-- COMPLETED JOBS LEDGER -->
+    <section style="margin-bottom: 40px;">
+      <div style="margin-bottom: 18px;">
+        <span class="fx-badge fx-badge-purple">Financial History</span>
+        <h2 style="font-size: 1.6rem; font-weight: 800; margin-top: 6px;">Completed Jobs & Payout Ledger</h2>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table class="pro-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Service Category</th>
+              <th>Client Name</th>
+              <th>Status</th>
+              <th>Net Credited Payout</th>
+            </tr>
+          </thead>
+          <tbody id="completedJobsTableBody">
+            <!-- Rendered dynamically -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- REGISTER NEW PRO MODAL -->
+  <div class="fx-modal-backdrop hidden" id="proRegisterModal">
+    <div class="fx-modal-box">
+      <div class="fx-modal-header">
+        <div>
+          <span class="fx-badge fx-badge-green">Partner Onboarding</span>
+          <h3 class="fx-modal-title">Join Fixup as a Service Professional</h3>
+        </div>
+        <button class="fx-modal-close" id="closeProRegisterModal">&times;</button>
+      </div>
+
+      <form id="proRegisterForm">
+        <div style="margin-bottom: 16px;">
+          <label class="fx-label">Full Name</label>
+          <input type="text" class="fx-input" id="regProName" placeholder="e.g., Harish Chandra" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+          <div>
+            <label class="fx-label">Mobile Number (WhatsApp Enabled)</label>
+            <input type="tel" class="fx-input" id="regProPhone" placeholder="10-digit number" pattern="[0-9+ -]{10,14}" required>
+          </div>
+          <div>
+            <label class="fx-label">Primary Skill / Trade</label>
+            <select class="fx-select" id="regProCategory" required>
+              <option value="Electrical">Electrician / Wireman</option>
+              <option value="Plumbing">Plumber / Pipe Specialist</option>
+              <option value="Cleaning">Deep Cleaning & Sanitization</option>
+              <option value="Appliance Repair">AC & Appliance Technician</option>
+              <option value="Carpentry">Carpentry & Furniture Assembly</option>
+              <option value="Painting">Painter & Waterproofing</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+          <div>
+            <label class="fx-label">Years of Experience</label>
+            <input type="number" class="fx-input" id="regProExp" min="1" max="40" value="5" required>
+          </div>
+          <div>
+            <label class="fx-label">Service City & Neighborhoods</label>
+            <input type="text" class="fx-input" id="regProLocation" placeholder="e.g., Noida Sector 18, 62 & Indirapuram" required>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 18px;">
+          <label class="fx-label">Bio & Special Tools / Certifications</label>
+          <textarea class="fx-textarea" id="regProBio" rows="2" placeholder="Tell customers about your craftsmanship, tools, and background..."></textarea>
+        </div>
+
+        <div style="background: #f0fdf4; border: 1.5px dashed #86efac; padding: 14px; border-radius: var(--radius-md); margin-bottom: 20px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <i class="fa-solid fa-id-card" style="font-size: 1.4rem; color: #059669;"></i>
+            <div style="font-size: 0.85rem; color: #065f46;">
+              <strong>Aadhaar & Police Verification:</strong> ID verification is checked by the Admin console before granting the Verified Shield.
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="fx-btn fx-btn-success fx-btn-lg" style="width: 100%;">
+          <i class="fa-solid fa-paper-plane"></i> Submit Application & Go Online
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Shared Scripts & Module Logic -->
+  <script src="../shared/shared.js"></script>
+  <script src="provider.js"></script>
+</body>
+</html>

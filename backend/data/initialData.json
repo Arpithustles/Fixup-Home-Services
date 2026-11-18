@@ -1,0 +1,144 @@
+{
+  "services": [
+    {
+      "id": "srv-elec",
+      "name": "Electrical Repairs & Wiring",
+      "category": "Electrical",
+      "basePrice": 449,
+      "rating": 4.9,
+      "reviewsCount": 382,
+      "tagline": "Safe, certified solutions for short circuits, fans, lights & switchboards.",
+      "addons": [
+        { "name": "Ceiling Fan Installation", "price": 199 },
+        { "name": "MCB / Fuse Box Replacement", "price": 299 }
+      ]
+    },
+    {
+      "id": "srv-plumb",
+      "name": "Plumbing & Pipe Leakage Fix",
+      "category": "Plumbing",
+      "basePrice": 399,
+      "rating": 4.85,
+      "reviewsCount": 420,
+      "tagline": "Tap repair, drain blockage clearing, geyser connection & pipe replacements.",
+      "addons": [
+        { "name": "Water Motor Pump Checkup", "price": 349 },
+        { "name": "Severe Drain Snaking", "price": 299 }
+      ]
+    },
+    {
+      "id": "srv-clean",
+      "name": "Deep Home & Kitchen Cleaning",
+      "category": "Cleaning",
+      "basePrice": 699,
+      "rating": 4.92,
+      "reviewsCount": 512,
+      "tagline": "Intensive mechanized scrub, bathroom descaling & germ disinfection.",
+      "addons": [
+        { "name": "Balcony Jet Washing", "price": 249 },
+        { "name": "Sofa & Mattress Shampooing", "price": 399 }
+      ]
+    },
+    {
+      "id": "srv-ac",
+      "name": "AC Servicing & Gas Charging",
+      "category": "Appliance Repair",
+      "basePrice": 599,
+      "rating": 4.88,
+      "reviewsCount": 290,
+      "tagline": "Deep jet pump cleaning, refrigerant pressure check & cooling coil wash.",
+      "addons": [
+        { "name": "Freon Gas Refill (Complete)", "price": 1499 },
+        { "name": "Antibacterial Foam Wash", "price": 299 }
+      ]
+    }
+  ],
+  "providers": [
+    {
+      "id": "pro-101",
+      "name": "Rajesh Sharma",
+      "serviceCategory": "Electrical",
+      "phone": "+91 98765 43210",
+      "experienceYears": 8,
+      "rating": 4.94,
+      "completedJobs": 412,
+      "status": "online",
+      "kycStatus": "verified",
+      "earningsToday": 1850,
+      "location": "Sector 62, Noida / Delhi NCR"
+    },
+    {
+      "id": "pro-102",
+      "name": "Vikram Chawla",
+      "serviceCategory": "Plumbing",
+      "phone": "+91 98123 45678",
+      "experienceYears": 6,
+      "rating": 4.88,
+      "completedJobs": 334,
+      "status": "online",
+      "kycStatus": "verified",
+      "earningsToday": 1420,
+      "location": "Indirapuram & Vaishali"
+    },
+    {
+      "id": "pro-103",
+      "name": "Sunita Devi",
+      "serviceCategory": "Cleaning",
+      "phone": "+91 99988 77665",
+      "experienceYears": 7,
+      "rating": 4.96,
+      "completedJobs": 560,
+      "status": "online",
+      "kycStatus": "verified",
+      "earningsToday": 2300,
+      "location": "South Delhi & GK"
+    },
+    {
+      "id": "pro-105",
+      "name": "Mohammad Farooq",
+      "serviceCategory": "Carpentry",
+      "phone": "+91 98222 33445",
+      "experienceYears": 10,
+      "rating": 4.91,
+      "completedJobs": 388,
+      "status": "online",
+      "kycStatus": "pending",
+      "earningsToday": 0,
+      "location": "Rohini & Pitampura"
+    }
+  ],
+  "bookings": [
+    {
+      "id": "FX-8941",
+      "customerName": "Priya Verma",
+      "customerPhone": "+91 98111 22334",
+      "customerAddress": "Flat 402, Lotus Boulevard, Sector 100, Noida",
+      "serviceId": "srv-elec",
+      "serviceName": "Electrical Repairs & Wiring",
+      "category": "Electrical",
+      "date": "2026-11-19",
+      "timeSlot": "10:00 AM - 12:00 PM",
+      "status": "in_progress",
+      "providerId": "pro-101",
+      "providerName": "Rajesh Sharma",
+      "isEmergency": true,
+      "totalAmount": 898
+    },
+    {
+      "id": "FX-8942",
+      "customerName": "Aman Mehra",
+      "customerPhone": "+91 98777 66554",
+      "customerAddress": "Villa 12, Palm Meadows, Whitefield",
+      "serviceId": "srv-plumb",
+      "serviceName": "Plumbing & Pipe Leakage Fix",
+      "category": "Plumbing",
+      "date": "2026-11-19",
+      "timeSlot": "02:00 PM - 04:00 PM",
+      "status": "assigned",
+      "providerId": "pro-102",
+      "providerName": "Vikram Chawla",
+      "isEmergency": false,
+      "totalAmount": 733
+    }
+  ]
+}

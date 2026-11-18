@@ -1,0 +1,22 @@
+{
+  "name": "fixup-backend",
+  "version": "1.0.0",
+  "description": "REST API Backend for Fixup Home Services Platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "home-services",
+    "gig-economy",
+    "express",
+    "rest-api"
+  ],
+  "author": "Arpit Singh, Arjun Singh, Aayush Kumar",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}

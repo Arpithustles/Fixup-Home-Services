@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Details — Fixup</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/themes.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/navbar.css">
+  <link rel="stylesheet" href="../css/home.css">
+</head>
+<body>
+
+  <div id="navbar-mount"></div>
+
+  <main style="padding: 50px 0 80px 0;">
+    <div class="container-custom">
+      <div id="serviceDetailsMount">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="../js/theme.js"></script>
+  <script src="../js/store.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const serviceId = urlParams.get('id') || 'srv-plumb';
+      const s = window.FixupStore.getServiceById(serviceId) || window.FixupStore.getServices()[0];
+
+      const mount = document.getElementById('serviceDetailsMount');
+      if (!mount || !s) return;
+
+      document.title = `${s.name} — Fixup Home Services`;
+
+      mount.innerHTML = `
+        <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: flex-start;">
+          <!-- Left Details -->
+          <div>
+            <div style="margin-bottom: 20px;">
+              <span class="badge-fixup badge-primary">${s.category}</span>
+              <h1 style="font-size: 2.5rem; font-weight: 900; margin: 10px 0;">${s.name}</h1>
+              <div style="display: flex; align-items: center; gap: 14px; font-size: 0.95rem; color: var(--text-muted);">
+                <span><i class="fa-solid fa-star text-warning"></i> <strong>${s.rating}</strong> (${s.reviewsCount} reviews)</span>
+                <span>•</span>
+                <span><i class="fa-solid fa-shield-halved text-success"></i> 30-Day Work Warranty</span>
+              </div>
+            </div>
+
+            <div style="border-radius: var(--radius-xl); overflow: hidden; height: 380px; margin-bottom: 30px; box-shadow: var(--shadow-lg);">
+              <img src="${s.image}" alt="${s.name}" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+
+            <div class="card-fixup" style="margin-bottom: 30px;">
+              <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 14px;">Service Overview</h3>
+              <p style="color: var(--text-secondary); line-height: 1.7; font-size: 1rem;">
+                ${s.tagline} Our verified trade specialists arrive equipped with specialized pressure testing equipment, insulated safety tools, and standard diagnostic instruments.
+              </p>
+
+              <h4 style="font-size: 1.15rem; font-weight: 800; margin: 24px 0 12px 0;">What is Included:</h4>
+              <ul style="list-style: none; padding: 0; line-height: 2;">
+                <li><i class="fa-solid fa-circle-check text-success" style="margin-right: 8px;"></i> Comprehensive doorstep fault inspection & diagnostic check</li>
+                <li><i class="fa-solid fa-circle-check text-success" style="margin-right: 8px;"></i> Repair execution adhering to electrical & municipal plumbing standards</li>
+                <li><i class="fa-solid fa-circle-check text-success" style="margin-right: 8px;"></i> Post-service clean up of working site and debris removal</li>
+                <li><i class="fa-solid fa-circle-check text-success" style="margin-right: 8px;"></i> Transparent digital tax invoice with 30-day recurring warranty</li>
+              </ul>
+            </div>
+
+            <!-- Add-ons Available -->
+            <div class="card-fixup" style="margin-bottom: 30px;">
+              <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 16px;">Available Add-on Upgrades & Parts</h3>
+              <div>
+                ${(s.addons || []).map(a => `
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; background: var(--bg-surface-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-md); margin-bottom: 10px;">
+                    <div>
+                      <strong style="font-size: 0.95rem; display: block;">${a.name}</strong>
+                      <span style="font-size: 0.8rem; color: var(--text-muted);">Includes genuine materials and fitting labor</span>
+                    </div>
+                    <strong style="color: var(--primary); font-size: 1.1rem;">+₹${a.price}</strong>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Booking Box (Sticky) -->
+          <div style="position: sticky; top: 90px;">
+            <div class="card-fixup" style="border: 2px solid var(--primary); padding: 32px; box-shadow: var(--shadow-xl);">
+              <div style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.5px;">Standard Upfront Rate</div>
+              <div style="font-size: 2.8rem; font-weight: 900; color: var(--primary); margin: 6px 0 16px 0;">₹${s.basePrice}</div>
+
+              <div style="background: var(--bg-surface-secondary); padding: 14px; border-radius: var(--radius-md); font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 24px;">
+                <div style="margin-bottom: 6px;"><i class="fa-solid fa-bolt text-danger"></i> <strong>60-Min Emergency:</strong> Available 24/7</div>
+                <div style="margin-bottom: 6px;"><i class="fa-solid fa-moon text-warning"></i> <strong>Night Hours:</strong> 8 PM to 6 AM (Night surcharge applies)</div>
+                <div><i class="fa-solid fa-shield-check text-success"></i> <strong>Guaranteed:</strong> 100% Cashless refund protection</div>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <a href="request-service.html?serviceId=${s.id}" class="btn-fixup btn-primary-fixup btn-lg" style="width: 100%;">
+                  <i class="fa-solid fa-calendar-plus"></i> Request This Service
+                </a>
+                <a href="emergency.html?serviceId=${s.id}" class="btn-fixup btn-emergency btn-lg" style="width: 100%;">
+                  <i class="fa-solid fa-bolt"></i> Emergency 60-Min Rush
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>

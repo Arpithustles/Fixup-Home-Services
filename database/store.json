@@ -1,0 +1,113 @@
+{
+  "services": [
+    {
+      "id": "srv-plumb",
+      "name": "Plumbing & Water System Repair",
+      "category": "Plumbing",
+      "basePrice": 399,
+      "rating": 4.88,
+      "reviewsCount": 420,
+      "tagline": "Pipe leak repairs, tap washer fittings, drain snaking, geyser and overhead tank valves.",
+      "addons": [
+        { "name": "Severe Drain Blockage Snaking", "price": 299 },
+        { "name": "Water Booster Pump Diagnosis", "price": 349 }
+      ]
+    },
+    {
+      "id": "srv-elec",
+      "name": "Electrical Repair & Wiring",
+      "category": "Electrical",
+      "basePrice": 449,
+      "rating": 4.92,
+      "reviewsCount": 382,
+      "tagline": "Short-circuit triage, ceiling fans, switches, wiring replacement and MCB protection.",
+      "addons": [
+        { "name": "Ceiling Fan Complete Installation", "price": 199 },
+        { "name": "Main Distribution MCB Box Replacement", "price": 299 }
+      ]
+    },
+    {
+      "id": "srv-ac",
+      "name": "Air Conditioner Servicing & Repair",
+      "category": "AC Repair",
+      "basePrice": 599,
+      "rating": 4.89,
+      "reviewsCount": 340,
+      "tagline": "Jet-pump coil wash, gas leak checks, PCB inverter diagnosis and filter sterilization.",
+      "addons": [
+        { "name": "Complete Freon Gas Recharge", "price": 1499 },
+        { "name": "Antibacterial Deep Chemical Foam Wash", "price": 299 }
+      ]
+    },
+    {
+      "id": "srv-clean",
+      "name": "Deep Home & Kitchen Cleaning",
+      "category": "Cleaning",
+      "basePrice": 699,
+      "rating": 4.94,
+      "reviewsCount": 512,
+      "tagline": "Floor mechanized scrubbing, tile descaling, chimney degreasing and germ disinfection.",
+      "addons": [
+        { "name": "Balcony High-Pressure Wash", "price": 249 },
+        { "name": "Sofa & Fabric Mattress Shampooing", "price": 399 }
+      ]
+    }
+  ],
+  "providers": [
+    {
+      "id": "pro-101",
+      "username": "rajesh_sharma",
+      "name": "Rajesh Sharma",
+      "email": "rajesh.sharma@fixup.in",
+      "phone": "+91 98765 43210",
+      "serviceCategory": "Electrical",
+      "experienceYears": 8,
+      "rating": 4.94,
+      "completedJobs": 412,
+      "status": "online",
+      "kycStatus": "verified",
+      "nextKycDate": "2026-11-30T12:00:00.000Z"
+    },
+    {
+      "id": "pro-102",
+      "username": "vikram_plumb",
+      "name": "Vikram Chawla",
+      "email": "vikram.chawla@fixup.in",
+      "phone": "+91 98123 45678",
+      "serviceCategory": "Plumbing",
+      "experienceYears": 6,
+      "rating": 4.88,
+      "completedJobs": 334,
+      "status": "online",
+      "kycStatus": "verified",
+      "nextKycDate": "2026-11-26T12:00:00.000Z"
+    }
+  ],
+  "customers": [
+    {
+      "id": "cust-201",
+      "username": "priya_verma",
+      "name": "Priya Verma",
+      "email": "priya.verma@gmail.com",
+      "phone": "+91 98111 22334",
+      "address": "Flat 402, Lotus Boulevard, Sector 100",
+      "city": "Noida",
+      "pincode": "201304"
+    }
+  ],
+  "bookings": [
+    {
+      "id": "FX-9101",
+      "customerId": "cust-201",
+      "customerName": "Priya Verma",
+      "serviceName": "Electrical Repair & Wiring",
+      "category": "Electrical",
+      "statusStep": 4,
+      "status": "in_progress",
+      "providerId": "pro-101",
+      "providerName": "Rajesh Sharma",
+      "isEmergency": true,
+      "totalAmount": 1153
+    }
+  ]
+}

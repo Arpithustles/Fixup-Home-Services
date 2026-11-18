@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Dashboard — Fixup</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/themes.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/navbar.css">
+  <link rel="stylesheet" href="../css/customer.css">
+</head>
+<body>
+
+  <div id="navbar-mount"></div>
+
+  <main class="customer-layout">
+    <div class="container-custom">
+      <!-- Welcome Header -->
+      <div class="welcome-header-card">
+        <div class="welcome-user-info">
+          <div class="welcome-avatar-circle" id="custAvatarInitials">PV</div>
+          <div>
+            <span class="badge-fixup badge-primary">Customer Account</span>
+            <h1 style="font-size: 2rem; font-weight: 900; margin: 4px 0 2px 0;">
+              Welcome back, <span id="custWelcomeName">Priya</span>!
+            </h1>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">
+              Manage your household service requests and follow real-time technician progress.
+            </p>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <a href="../pages/request-service.html" class="btn-fixup btn-primary-fixup btn-sm">
+            <i class="fa-solid fa-calendar-plus"></i> Request New Service
+          </a>
+          <a href="../pages/emergency.html" class="btn-fixup btn-emergency btn-sm">
+            <i class="fa-solid fa-bolt"></i> Emergency 60-Min Rush
+          </a>
+        </div>
+      </div>
+
+      <!-- 5 Overview Statistic Cards -->
+      <div class="stats-grid-customer">
+        <div class="cust-stat-card">
+          <div class="cust-stat-val" id="statTotalBookings">0</div>
+          <div class="cust-stat-label">Total Bookings</div>
+        </div>
+        <div class="cust-stat-card">
+          <div class="cust-stat-val" style="color: var(--primary);" id="statActiveBookings">0</div>
+          <div class="cust-stat-label">Active Dispatches</div>
+        </div>
+        <div class="cust-stat-card">
+          <div class="cust-stat-val" style="color: var(--success);" id="statCompletedBookings">0</div>
+          <div class="cust-stat-label">Completed Services</div>
+        </div>
+        <div class="cust-stat-card">
+          <div class="cust-stat-val" style="color: var(--danger);" id="statCancelledBookings">0</div>
+          <div class="cust-stat-label">Cancelled</div>
+        </div>
+        <div class="cust-stat-card">
+          <div class="cust-stat-val" style="color: var(--primary);" id="statTotalSpending">₹0</div>
+          <div class="cust-stat-label">Total Spend (Cashless)</div>
+        </div>
+      </div>
+
+      <!-- Active Bookings with Visual 5-Step Timeline -->
+      <section style="margin-bottom: 50px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <div>
+            <h2 style="font-size: 1.6rem; font-weight: 800;">Active Bookings &amp; Live Progress</h2>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin: 0;">Step-by-step progress from technician dispatch to final completion.</p>
+          </div>
+        </div>
+
+        <div id="activeBookingsContainer">
+          <!-- Populated dynamically by customer.js -->
+        </div>
+      </section>
+
+      <!-- Completed Bookings History -->
+      <section>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <h2 style="font-size: 1.6rem; font-weight: 800;">Completed Services &amp; Rebook</h2>
+          <a href="bookings.html" style="font-size: 0.88rem; font-weight: 700;">View All History <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div id="completedBookingsContainer">
+          <!-- Populated dynamically by customer.js -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <!-- Cancel Booking Modal -->
+  <div id="cancelModal" style="display:none; position:fixed; inset:0; background:rgba(15,23,42,0.6); z-index:2000; align-items:center; justify-content:center;">
+    <div style="background:var(--bg-modal); border-radius:var(--radius-xl); padding:32px; max-width:520px; width:90%; box-shadow:var(--shadow-xl); position:relative;">
+      <button onclick="closeCancelModal()" style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:1.5rem;color:var(--text-muted);cursor:pointer;">&times;</button>
+      <h2 style="font-size:1.4rem;font-weight:900;margin-bottom:4px;">Cancel Booking</h2>
+      <p style="color:var(--text-muted);font-size:0.88rem;margin-bottom:20px;" id="cancelModalBookingInfo">Loading booking details...</p>
+      
+      <div id="cancelFeeBlock" style="background:var(--bg-surface-secondary);border-radius:var(--radius-md);padding:16px;margin-bottom:20px;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:0.9rem;">
+          <span>Booking Amount</span><strong id="cancelBookingAmt">₹0</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:0.9rem;color:var(--danger);">
+          <span>Cancellation Fee (<span id="cancelPct">0</span>% — <span id="cancelTier">—</span>)</span>
+          <strong id="cancelFee">₹0</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:1rem;font-weight:800;color:var(--success);border-top:1px solid var(--border-color);padding-top:8px;margin-top:8px;">
+          <span>Refund Amount</span><strong id="cancelRefund">₹0</strong>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-bottom:16px;">
+        <label class="form-label form-label-required">Reason for Cancellation</label>
+        <select id="cancelReason" class="form-control-fixup">
+          <option value="">Select a reason...</option>
+          <option value="Changed my mind">Changed my mind</option>
+          <option value="Found another service provider">Found another service provider</option>
+          <option value="Incorrect booking details">Incorrect booking details</option>
+          <option value="Service no longer required">Service no longer required</option>
+          <option value="Professional delay">Professional delay</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin-bottom:24px;">
+        <label class="form-label">Additional Comments (optional)</label>
+        <textarea id="cancelComments" class="form-control-fixup" rows="3" placeholder="Any additional details about your cancellation..."></textarea>
+      </div>
+
+      <div style="display:flex;gap:12px;">
+        <button onclick="closeCancelModal()" class="btn-fixup btn-secondary-fixup" style="flex:1;">Keep Booking</button>
+        <button onclick="confirmCancellation()" class="btn-fixup" style="flex:1;background:var(--danger);color:#fff;border:none;" id="confirmCancelBtn">Confirm Cancellation</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/theme.js"></script>
+  <script src="../js/store.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/customer.js"></script>
+  <script>
+    let _cancelBookingId = null;
+
+    function openCancelModal(bookingId) {
+      _cancelBookingId = bookingId;
+      const booking = window.FixupStore.getBookingById(bookingId);
+      if (!booking) return;
+      
+      document.getElementById('cancelModalBookingInfo').textContent = `${booking.serviceName} — ${booking.date} (${booking.timeSlot})`;
+      
+      const feeCalc = window.FixupStore.calculateCancellationFee(bookingId);
+      if (feeCalc && feeCalc.eligible) {
+        document.getElementById('cancelBookingAmt').textContent = '₹' + feeCalc.bookingAmount;
+        document.getElementById('cancelPct').textContent = feeCalc.percentage;
+        document.getElementById('cancelTier').textContent = feeCalc.tier;
+        document.getElementById('cancelFee').textContent = '₹' + feeCalc.charge;
+        document.getElementById('cancelRefund').textContent = '₹' + feeCalc.refund;
+      }
+      
+      document.getElementById('cancelReason').value = '';
+      document.getElementById('cancelComments').value = '';
+      document.getElementById('cancelModal').style.display = 'flex';
+    }
+
+    function closeCancelModal() {
+      document.getElementById('cancelModal').style.display = 'none';
+      _cancelBookingId = null;
+    }
+
+    function confirmCancellation() {
+      const reason = document.getElementById('cancelReason').value;
+      if (!reason) { window.FixupToast && window.FixupToast.show('Required', 'Please select a cancellation reason.', 'warning'); return; }
+      const comments = document.getElementById('cancelComments').value;
+      
+      const result = window.FixupStore.cancelBooking(_cancelBookingId, { reason, comments, cancelledBy: 'CUSTOMER' });
+      if (result.success) {
+        closeCancelModal();
+        window.FixupToast && window.FixupToast.show('Booking Cancelled', `Refund of ₹${result.feeCalc.refund} will be processed within 5–7 business days.`, 'info', 5000);
+        window.initCustomerDashboard();
+      } else {
+        window.FixupToast && window.FixupToast.show('Cannot Cancel', result.message, 'danger');
+      }
+    }
+
+    /**
+     * Inject Cancel buttons into active booking cards rendered by customer.js.
+     * customer.js renders cards with id="card-<bookingId>" for active bookings.
+     * We append a Cancel button into each card's action area for cancellable statuses.
+     */
+    function injectDashboardCancelButtons() {
+      const session = window.FixupStore && window.FixupStore.getSession();
+      if (!session) return;
+      const bookings = window.FixupStore.getBookingsForCustomer(session.userId);
+      const active = bookings.filter(b => b.status !== 'completed' && b.status !== 'cancelled');
+      active.forEach(b => {
+        if (b.status === 'pending' || b.status === 'assigned' || b.status === 'accepted') {
+          const card = document.getElementById('card-' + b.id);
+          if (!card) return;
+          // Avoid double-injecting
+          if (card.querySelector('.dash-cancel-btn')) return;
+          // Find the specialist info row (last child div with flex layout) and append button
+          const infoRow = card.querySelector('[style*="justify-content: space-between"][style*="margin-top: 18px"]');
+          if (infoRow) {
+            const btn = document.createElement('button');
+            btn.className = 'btn-fixup btn-sm dash-cancel-btn';
+            btn.style.cssText = 'background:var(--danger-light);color:var(--danger);border:1px solid var(--danger);';
+            btn.innerHTML = '<i class="fa-solid fa-xmark"></i> Cancel Booking';
+            btn.onclick = () => openCancelModal(b.id);
+            infoRow.appendChild(btn);
+          }
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      window.initCustomerDashboard();
+      injectDashboardCancelButtons();
+
+      // Also re-inject after store updates (dashboard re-renders)
+      window.addEventListener('fixup-store-updated', () => {
+        setTimeout(injectDashboardCancelButtons, 50);
+      });
+    });
+  </script>
+</body>
+</html>

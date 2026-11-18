@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Provider Profile & KYC — Fixup</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/themes.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/navbar.css">
+  <link rel="stylesheet" href="../css/provider.css">
+</head>
+<body>
+
+  <div id="navbar-mount"></div>
+
+  <main class="provider-layout">
+    <div class="container-custom" style="max-width: 800px;">
+      <h1 style="font-size: 2.2rem; font-weight: 900; margin-bottom: 24px;">Professional Profile & Verification</h1>
+
+      <div class="card-fixup">
+        <div style="display: flex; align-items: center; gap: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border-color); margin-bottom: 24px;">
+          <img src="" id="proProfAvatar" alt="Pro" style="width: 80px; height: 80px; border-radius: var(--radius-lg); object-fit: cover;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <h2 style="font-size: 1.5rem; font-weight: 800; margin: 0;" id="proProfName">Rajesh Sharma</h2>
+              <span class="badge-fixup badge-success" id="proProfKycBadge"><i class="fa-solid fa-shield-check"></i> Fixup Verified Pro</span>
+            </div>
+            <div style="font-size: 0.95rem; color: var(--primary); font-weight: 700; margin-top: 4px;" id="proProfTrade">Master Electrician • 8 Yrs Experience</div>
+            <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 2px;" id="proProfId">ID: pro-101</div>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 0.92rem;">
+          <div>
+            <span style="color: var(--text-muted); font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Primary Service Category</span>
+            <div style="font-weight: 700;" id="proProfCat">Electrical</div>
+          </div>
+          <div>
+            <span style="color: var(--text-muted); font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Official Phone</span>
+            <div style="font-weight: 700;" id="proProfPhone">+91 98765 43210</div>
+          </div>
+          <div>
+            <span style="color: var(--text-muted); font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Registered Email</span>
+            <div style="font-weight: 700;" id="proProfEmail">rajesh.sharma@fixup.in</div>
+          </div>
+          <div>
+            <span style="color: var(--text-muted); font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Active Service Radius</span>
+            <div style="font-weight: 700;">Sector 62, Indirapuram & Noida (8 km radius)</div>
+          </div>
+          <div>
+            <span style="color: var(--text-muted); font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Settlement UPI VPA</span>
+            <div style="font-weight: 700; color: var(--success);" id="proProfUpi">rajesh.sharma@okaxis</div>
+          </div>
+          <div>
+            <span style="color: var(--text-muted); font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Mandatory 15-Day Audit</span>
+            <div style="font-weight: 700; color: var(--warning);">Active & Compliant</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="../js/theme.js"></script>
+  <script src="../js/store.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const session = window.FixupStore.getSession();
+      if (!session || session.role !== 'SERVICE_PROVIDER') {
+        window.location.href = '../pages/login.html';
+        return;
+      }
+      const pro = window.FixupStore.getProviderById(session.userId) || window.FixupStore.getProviders()[0];
+      document.getElementById('proProfAvatar').src = pro.avatar;
+      document.getElementById('proProfName').textContent = pro.name;
+      document.getElementById('proProfTrade').textContent = `${pro.serviceCategory} • ${pro.experienceYears} Years Experience`;
+      document.getElementById('proProfId').textContent = `ID: ${pro.id}`;
+      document.getElementById('proProfCat').textContent = pro.serviceCategory;
+      document.getElementById('proProfPhone').textContent = pro.phone;
+      document.getElementById('proProfEmail').textContent = pro.email;
+      document.getElementById('proProfUpi').textContent = pro.payoutDetails?.upiId || `${pro.username}@okaxis`;
+    });
+  </script>
+</body>
+</html>
