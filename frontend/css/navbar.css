@@ -22,24 +22,40 @@
 .navbar-container {
   display: flex;
   align-items: center;
-  gap: 16px;
-  max-width: 1360px;
+  gap: 24px;
+  max-width: none;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 28px;
   min-height: 60px;
   width: 100%;
   box-sizing: border-box;
+  overflow: visible;
 }
 
 /* ── Left zone: logo + "Register as a Service Provider" btn ─────────────── */
 .navbar-left {
   display: flex;
   align-items: center;
-  gap: 40px; /* ~35–45px between Fixup logo and Register button */
+  gap: 40px; /* 35–45px between Fixup wordmark and Register button */
   flex-shrink: 0;
 }
 
-/* ── Brand / logo ───────────────────────────────────────────────────────── */
+/* Kill any leftover injected/pseudo brand squares from prior navbar patches */
+.navbar-brand::before,
+.navbar-brand::after,
+.navbar-left::before,
+.navbar-left::after,
+.navbar-container::before {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ── Brand / logo — a single .brand-symbol, then the wordmark ───────────── */
 .navbar-brand {
   display: flex;
   align-items: center;
@@ -49,6 +65,7 @@
   font-size: 1.5rem;
   font-weight: 900;
   letter-spacing: -0.5px;
+  flex-shrink: 0;
 }
 
 .brand-symbol {
@@ -108,14 +125,14 @@
   justify-content: flex-end;
   flex: 0 0 auto;
   min-width: 0;
-  gap: 12px;
+  gap: 14px;
 }
 
 /* ── Centered nav links ─────────────────────────────────────────────────── */
 .nav-links-list {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 28px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -153,9 +170,38 @@
 .navbar-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   flex-shrink: 0;
   margin-left: auto;
+}
+
+/* Keep every navbar control the same height and vertically centered */
+.navbar-fixup .navbar-right > .btn-fixup,
+.navbar-fixup .navbar-right > .btn-theme-toggle,
+.navbar-fixup .btn-nav-provider {
+  height: 38px;
+  box-sizing: border-box;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.navbar-fixup .navbar-right > .btn-fixup {
+  padding: 0 16px;
+}
+
+.navbar-fixup .navbar-right > .btn-fixup:hover {
+  transform: none;
+}
+
+/* Extra breathing room: Request a Service ↔ Emergency Request */
+.navbar-fixup .navbar-right > .btn-primary-fixup {
+  margin-right: 8px;
+}
+
+/* Theme toggle ↔ Login / Sign Up */
+.navbar-fixup .navbar-right > .btn-theme-toggle {
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
 /* ── Shared pill-button base ────────────────────────────────────────────── */
@@ -390,14 +436,36 @@
   gap: 20px;
 }
 
-/* ── Responsive: <= 1080px ──────────────────────────────────────────────── */
-@media (max-width: 1080px) {
+/* ── Laptop: keep the 40px logo gap; only tighten link/action spacing ──── */
+@media (max-width: 1600px) {
   .navbar-container {
-    gap: 12px;
+    gap: 20px;
+    padding: 0 24px;
   }
 
   .navbar-left {
-    gap: 16px;
+    gap: 40px;
+  }
+
+  .nav-links-list {
+    gap: 22px;
+  }
+
+  .navbar-right,
+  .navbar-actions {
+    gap: 12px;
+  }
+}
+
+/* ── Tablet / small desktop: hamburger so items never overlap or clip ───── */
+@media (max-width: 1280px) {
+  .navbar-container {
+    gap: 12px;
+    padding: 0 20px;
+  }
+
+  .navbar-left {
+    gap: 12px;
   }
 
   .btn-nav-provider {
@@ -415,8 +483,12 @@
 
   .navbar-right,
   .navbar-actions {
-    gap: 10px;
+    gap: 12px;
     margin-left: auto;
+  }
+
+  .navbar-fixup .navbar-right > .btn-primary-fixup {
+    margin-right: 0;
   }
 
   /* Hide verbose action buttons on mobile — hamburger drawer handles them */
@@ -433,6 +505,6 @@
   }
 
   .navbar-right {
-    gap: 8px;
+    gap: 10px;
   }
 }

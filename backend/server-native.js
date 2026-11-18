@@ -10,6 +10,28 @@ const path = require('path');
 const db = require('./config/db');
 
 const PORT = process.env.PORT || 5000;
+const PROJECT_ROOT = path.resolve(__dirname, '..');
+const FRONTEND_ROOT = path.join(PROJECT_ROOT, 'frontend');
+
+const MIME_TYPES = {
+  '.html': 'text/html; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.js': 'application/javascript; charset=utf-8',
+  '.json': 'application/json; charset=utf-8',
+  '.svg': 'image/svg+xml',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.gif': 'image/gif',
+  '.webp': 'image/webp',
+  '.ico': 'image/x-icon',
+  '.woff': 'font/woff',
+  '.woff2': 'font/woff2',
+  '.ttf': 'font/ttf',
+  '.otf': 'font/otf',
+  '.mp4': 'video/mp4',
+  '.webm': 'video/webm'
+};
 
 function setCors(res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -38,6 +60,41 @@ function parseBody(req) {
   });
 }
 
+async function serveStaticFile(req, res, filePath, allowedRoot) {
+  try {
+    const rootRealPath = await fs.promises.realpath(allowedRoot);
+    const realPath = await fs.promises.realpath(filePath);
+    if (realPath !== rootRealPath && !realPath.startsWith(rootRealPath + path.sep)) {
+      return sendJson(res, 404, { success: false, error: 'File not found.' });
+    }
+
+    const stats = await fs.promises.stat(realPath);
+    if (!stats.isFile()) {
+      return sendJson(res, 404, { success: false, error: 'File not found.' });
+    }
+
+    setCors(res);
+    res.writeHead(200, {
+      'Content-Type': MIME_TYPES[path.extname(realPath).toLowerCase()] || 'application/octet-stream',
+      'Content-Length': stats.size,
+      'X-Content-Type-Options': 'nosniff'
+    });
+    if (req.method.toUpperCase() === 'HEAD') return res.end();
+
+    const stream = fs.createReadStream(realPath);
+    stream.on('error', () => {
+      if (!res.headersSent) sendJson(res, 500, { success: false, error: 'Unable to read file.' });
+      else res.destroy();
+    });
+    stream.pipe(res);
+  } catch (err) {
+    if (err.code === 'ENOENT' || err.code === 'ENOTDIR') {
+      return sendJson(res, 404, { success: false, error: 'File not found.' });
+    }
+    throw err;
+  }
+}
+
 const server = http.createServer(async (req, res) => {
   const parsedUrl = url.parse(req.url, true);
   const pathname = parsedUrl.pathname;
@@ -64,12 +121,33 @@ const server = http.createServer(async (req, res) => {
       });
     }
 
-    // Root Welcome
-    if (pathname === '/' && method === 'GET') {
-      return sendJson(res, 200, {
-        message: 'Fixup Home Services REST API (Native Node.js)',
-        endpoints: ['/api/services', '/api/providers', '/api/bookings', '/api/admin/metrics', '/api/health']
-      });
+    // Serve the landing page and files contained in the frontend directory only.
+    if ((method === 'GET' || method === 'HEAD') && pathname === '/') {
+      let indexPath = path.join(PROJECT_ROOT, 'index.html');
+      try {
+        await fs.promises.access(indexPath, fs.constants.R_OK);
+      } catch (err) {
+        indexPath = path.join(FRONTEND_ROOT, 'index.html');
+        return await serveStaticFile(req, res, indexPath, FRONTEND_ROOT);
+      }
+      return await serveStaticFile(req, res, indexPath, PROJECT_ROOT);
+    }
+    if ((method === 'GET' || method === 'HEAD') && pathname.startsWith('/frontend/')) {
+      let relativePath;
+      try {
+        relativePath = decodeURIComponent(pathname.slice('/frontend/'.length));
+      } catch (err) {
+        return sendJson(res, 400, { success: false, error: 'Invalid file path.' });
+      }
+      if (!relativePath || relativePath.includes('\0')) {
+        return sendJson(res, 404, { success: false, error: 'File not found.' });
+      }
+
+      const filePath = path.resolve(FRONTEND_ROOT, relativePath);
+      if (filePath !== FRONTEND_ROOT && !filePath.startsWith(FRONTEND_ROOT + path.sep)) {
+        return sendJson(res, 404, { success: false, error: 'File not found.' });
+      }
+      return await serveStaticFile(req, res, filePath, FRONTEND_ROOT);
     }
 
     // Services
@@ -117,6 +195,26 @@ const server = http.createServer(async (req, res) => {
           serverUptime: process.uptime()
         }
       });
+    }
+
+    // Support frontend root-relative links (for example /css/site.css) and
+    // direct page loads while keeping all static access inside FRONTEND_ROOT.
+    if ((method === 'GET' || method === 'HEAD') && !pathname.startsWith('/api/')) {
+      let relativePath;
+      try {
+        relativePath = decodeURIComponent(pathname.slice(1));
+      } catch (err) {
+        return sendJson(res, 400, { success: false, error: 'Invalid file path.' });
+      }
+      if (!relativePath || relativePath.includes('\0')) {
+        return sendJson(res, 404, { success: false, error: 'File not found.' });
+      }
+
+      const filePath = path.resolve(FRONTEND_ROOT, relativePath);
+      if (filePath !== FRONTEND_ROOT && !filePath.startsWith(FRONTEND_ROOT + path.sep)) {
+        return sendJson(res, 404, { success: false, error: 'File not found.' });
+      }
+      return await serveStaticFile(req, res, filePath, FRONTEND_ROOT);
     }
 
     // Fallback 404

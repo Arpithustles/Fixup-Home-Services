@@ -160,7 +160,7 @@
           <div class="navbar-left">
             <a href="${prefix}index.html" class="navbar-brand">
               <div class="brand-symbol">F</div>
-              <span>Fixup<span class="brand-dot">.</span></span>
+              <span class="brand-wordmark">Fixup<span class="brand-dot">.</span></span>
             </a>
             ${leftCtaHtml}
           </div>
@@ -224,6 +224,17 @@
         </div>
       </div>
     `;
+
+    // Guard: only one blue F mark is allowed beside the Fixup wordmark.
+    const brandLink = navPlaceholder.querySelector('.navbar-brand');
+    if (brandLink) {
+      navPlaceholder.querySelectorAll('.fixup-brand-mark, .fixup-brand-link').forEach((el) => el.remove());
+      const marks = brandLink.querySelectorAll('.brand-symbol');
+      marks.forEach((el, idx) => {
+        if (idx > 0) el.remove();
+      });
+      navPlaceholder.querySelectorAll('.navbar-left > .brand-symbol').forEach((el) => el.remove());
+    }
 
     window.dispatchEvent(new CustomEvent('fixup-navbar-rendered'));
 
